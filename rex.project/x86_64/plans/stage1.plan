@@ -10,6 +10,16 @@
 			"name":			"check dependencies",
 			"dependencies":	[ null ],
 			"comment":		"LFS 11.3-systemd-rc1 Ch. 2.2"
+		},
+		{
+			"name":			"creating T_SYSROOT dirs",
+			"dependencies":	[ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 4.2"
+		},
+		{
+			"name":			"binutils pass 1",
+			"dependencies":	[ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 5.2"
 		}
 	]
 }

@@ -8,6 +8,8 @@
 # set all vars to export automatically
 set -a
 
+echo "Loading project_config.sh...."
+
 #
 ## Shared Variables
 #
