@@ -42,7 +42,6 @@ umask 022
 # $LFS_TGT is what LFS uses for this
 T_TRIPLET=x86_64-dhl-linux-gnu
 
-PATH=${T_SYSROOT}/tools/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin
 
 # prevents some configure scripts from looking in the wrong place for config.site 
 CONFIG_SITE=${T_SYSROOT}/usr/share/config.site
@@ -55,6 +54,8 @@ CROSSTOOLS_DIR=${T_SYSROOT}/xtools
 TEMP_STAGE_DIR=${T_SYSROOT}/source_stage
 # from project_config
 SOURCES_DIR=${dir_sources}
+PATCHES_DIR=${dir_patches}
+LOGS_ROOT=${dir_logs}
 
 # fail the unit in the event of a non-zero value passed
 # used primarily to check exit codes on previous commands
@@ -66,3 +67,5 @@ assert_zero() {
 		exit $1
 	fi
 }
+
+PATH=${CROSSTOOLS_DIR}/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin

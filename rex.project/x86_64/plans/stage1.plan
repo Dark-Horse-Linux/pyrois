@@ -20,6 +20,21 @@
 			"name":			"binutils pass 1",
 			"dependencies":	[ null ],
 			"comment":		"LFS 11.3-systemd-rc1 Ch. 5.2"
+		},
+		{
+			"name":			"gcc pass 1",
+			"dependencies":	[ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 5.3"
+		},
+		{
+			"name":			"linux api headers",
+			"dependencies":	[ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 5.4.1"
+		},
+		{
+			"name":			"glibc",
+			"dependencies":	[ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 5.5"
 		}
 	]
 }
