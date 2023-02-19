@@ -12,6 +12,7 @@ function mkfaildir() {
 
 # clean the slate
 rm -Rfv ${dir_stage}
+rm -Rf ${dir_logs}
 
 mkfaildir ${dir_stage}
 mkfaildir ${dir_localtools}

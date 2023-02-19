@@ -16,8 +16,6 @@ set -a
 # parent directory for most other directories
 project_root="$(dirname $(readlink -f "${BASH_SOURCE[0]}"))"
 
-#
-
 # the project files for the make system that is used to orchestrate the 
 # build steps
 dir_make=${project_root}/make.project
@@ -36,7 +34,7 @@ dir_localtools=${dir_stage}/local
 dir_artifacts=${dir_stage}/artifacts
 
 # path for the logs
-dir_logs=${dir_artifacts}/logs
+dir_logs=${project_root}/logs
 
 # config directory - general path for configuration files on the target
 # system before they're placed, as well as various values for configure

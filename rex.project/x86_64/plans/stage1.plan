@@ -4,7 +4,12 @@
 		{
 			"name":			"welcome", 
 			"dependencies": [ null ],
-			"comment":"		greet the user"
+			"comment":		"greet the user"
+		},
+		{
+			"name":			"check dependencies",
+			"dependencies":	[ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 2.2"
 		}
 	]
 }

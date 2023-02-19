@@ -12,6 +12,9 @@ else
 
 
 # these need run in the following order:
+clean:
+	${dir_make}/clean.sh
+
 
 dirs:
 	${dir_make}/dirs.sh

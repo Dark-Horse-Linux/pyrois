@@ -23,7 +23,7 @@ wget \
 echo "Validating source downloads..."
 pushd ${dir_patches} 1>/dev/null 2>/dev/null
 
-md5sum --quiet -c "md5sums.txt" || echofail "Validation failed.  Redownload."
+md5sum -c "md5sums.txt" || echofail "Validation failed.  Redownload."
 err=$?
 popd 1>/dev/null 2>/dev/null
 

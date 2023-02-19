@@ -12,7 +12,7 @@ echo "Bootstrapping from MAKE to REX..."
 
 # Executes rex from within the shell.
 
-${dir_localtools}/rex \
+${dir_localtools}/rex -v \
 	-c ${dir_rex}/x86_64/rex.config \
 	-p ${dir_rex}/x86_64/plans/stage1.plan
 
