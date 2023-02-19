@@ -27,14 +27,19 @@
 			"comment":		"LFS 11.3-systemd-rc1 Ch. 5.3"
 		},
 		{
-			"name":			"linux api headers",
+			"name":			"linux api headers pass 1",
 			"dependencies":	[ null ],
-			"comment":		"LFS 11.3-systemd-rc1 Ch. 5.4.1"
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 5.4"
 		},
 		{
-			"name":			"glibc",
+			"name":			"glibc pass 1",
 			"dependencies":	[ null ],
 			"comment":		"LFS 11.3-systemd-rc1 Ch. 5.5"
+		},
+		{
+			"name":			"libstdc++ pass 1",
+			"dependencies":	[ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 5.6"
 		}
 	]
 }

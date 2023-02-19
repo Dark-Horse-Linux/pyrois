@@ -2,7 +2,7 @@
   "units": [
     {
         "name":         			"welcome",
-        "target":       			"components/welcome.bash",
+        "target":       			"components/stage1/welcome.bash",
 		"is_shell_command":			true,
 		"shell_definition":			"bash",
 		"force_pty":				true,
@@ -20,7 +20,7 @@
     },
     {
         "name":         			"check dependencies",
-        "target":       			"components/check_dependencies.bash",
+        "target":       			"components/stage1/check_dependencies.bash",
 		"is_shell_command":			true,
 		"shell_definition":			"bash",
 		"force_pty":				true,
@@ -38,7 +38,7 @@
     },
     {
         "name":         			"creating T_SYSROOT dirs",
-        "target":       			"components/create_sysroot_dirs.bash",
+        "target":       			"components/stage1/create_sysroot_dirs.bash",
 		"is_shell_command":			true,
 		"shell_definition":			"bash",
 		"force_pty":				true,
@@ -56,7 +56,7 @@
     },
     {
         "name":         			"binutils pass 1",
-        "target":       			"components/binutils.bash --pass1",
+        "target":       			"components/stage1/binutils.bash --pass1",
 		"is_shell_command":			true,
 		"shell_definition":			"bash",
 		"force_pty":				true,
@@ -74,7 +74,7 @@
     },
     {
         "name":         			"gcc pass 1",
-        "target":       			"components/gcc.bash --gcc_pass1",
+        "target":       			"components/stage1/gcc.bash --gcc_pass1",
 		"is_shell_command":			true,
 		"shell_definition":			"bash",
 		"force_pty":				true,
@@ -91,8 +91,8 @@
         "environment":  			"environments/stage1.env.bash"
     },
     {
-        "name":         			"linux api headers",
-        "target":       			"components/linux.bash --pass1",
+        "name":         			"linux api headers pass 1",
+        "target":       			"components/stage1/linux.bash --pass1",
 		"is_shell_command":			true,
 		"shell_definition":			"bash",
 		"force_pty":				true,
@@ -109,8 +109,26 @@
         "environment":  			"environments/stage1.env.bash"
     },
     {
-        "name":         			"glibc",
-        "target":       			"components/glibc.bash --pass1",
+        "name":         			"glibc pass 1",
+        "target":       			"components/stage1/glibc.bash --pass1",
+		"is_shell_command":			true,
+		"shell_definition":			"bash",
+		"force_pty":				true,
+		"set_working_directory":	false,
+		"working_directory":		"",
+        "rectify":      			false,
+        "rectifier":    			"",
+        "active":       			true,
+        "required":     			true,
+		"set_user_context": 		true,
+        "user":         			"phanes",
+        "group":        			"phanes",
+		"supply_environment":		true,
+        "environment":  			"environments/stage1.env.bash"
+    },
+    {
+        "name":         			"libstdc++ pass 1",
+        "target":       			"components/stage1/gcc.bash --libstdcxx_pass1",
 		"is_shell_command":			true,
 		"shell_definition":			"bash",
 		"force_pty":				true,

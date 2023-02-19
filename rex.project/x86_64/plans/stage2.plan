@@ -1,0 +1,20 @@
+{
+	"plan":
+	[
+		{
+			"name":			"welcome", 
+			"dependencies": [ null ],
+			"comment":		"greet the user"
+		},
+		{
+			"name":			"m4 pass 1", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 6.2 (temp tools)"
+		},
+		{
+			"name":			"ncurses pass 1", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 6.2 (temp tools)"
+		}
+	]
+}

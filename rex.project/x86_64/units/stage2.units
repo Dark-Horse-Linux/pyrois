@@ -1,0 +1,58 @@
+{
+  "units": [
+    {
+        "name":         			"welcome",
+        "target":       			"components/stage2/welcome.bash",
+		"is_shell_command":			true,
+		"shell_definition":			"bash",
+		"force_pty":				true,
+		"set_working_directory":	false,
+		"working_directory":		"",
+        "rectify":      			false,
+        "rectifier":    			"",
+        "active":       			true,
+        "required":     			true,
+		"set_user_context": 		true,
+        "user":         			"phanes",
+        "group":        			"phanes",
+		"supply_environment":		true,
+        "environment":  			"environments/stage2.env.bash"
+    },
+    {
+        "name":         			"m4 pass 1",
+        "target":       			"components/stage2/m4.bash --all_temp",
+		"is_shell_command":			true,
+		"shell_definition":			"bash",
+		"force_pty":				true,
+		"set_working_directory":	false,
+		"working_directory":		"",
+        "rectify":      			false,
+        "rectifier":    			"",
+        "active":       			true,
+        "required":     			true,
+		"set_user_context": 		true,
+        "user":         			"phanes",
+        "group":        			"phanes",
+		"supply_environment":		true,
+        "environment":  			"environments/stage2.env.bash"
+    },
+    {
+        "name":         			"ncurses pass 1",
+        "target":       			"components/stage2/ncurses.bash --all_temp",
+		"is_shell_command":			true,
+		"shell_definition":			"bash",
+		"force_pty":				true,
+		"set_working_directory":	false,
+		"working_directory":		"",
+        "rectify":      			false,
+        "rectifier":    			"",
+        "active":       			true,
+        "required":     			true,
+		"set_user_context": 		true,
+        "user":         			"phanes",
+        "group":        			"phanes",
+		"supply_environment":		true,
+        "environment":  			"environments/stage2.env.bash"
+    }
+ ]
+}

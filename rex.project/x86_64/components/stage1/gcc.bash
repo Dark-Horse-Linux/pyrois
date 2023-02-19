@@ -236,7 +236,7 @@ mode_build_libstdcxx_pass1() {
 		--disable-multilib \
 		--disable-nls \
 		--disable-libstdcxx-pch \
-		--with-gxx-include-dir=/$(basename ${CROSSTOOLS_DIR})/${T_TRIPLET}/include/c++/10.2.0
+		--with-gxx-include-dir=/$(basename ${CROSSTOOLS_DIR})/${T_TRIPLET}/include/c++/12.2.0
 	assert_zero $?
 	
 	logprint "Compiling..."
@@ -290,6 +290,9 @@ mode_install_libstdcxx_pass1() {
 	
 	make DESTDIR=${T_SYSROOT} install
 	assert_zero $?
+	
+	logprint "Cleaning up libtool archive files..."
+	rm -v ${T_SYSROOT}/usr/lib/lib{stdc++,stdc++fs,supc++}.la
 	
 	logprint "Install of libstdcxx complete."
 }

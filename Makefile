@@ -38,6 +38,10 @@ download_patches:
 build_stage1:
 	sudo /usr/bin/env -i bash -c ". ./project_config.sh && ${dir_make}/build_stage1.sh"
 
+# kicks off rex
+build_stage2:
+	sudo /usr/bin/env -i bash -c ". ./project_config.sh && ${dir_make}/build_stage2.sh"
+
 # example:
 # make dirs
 # make install_rex
