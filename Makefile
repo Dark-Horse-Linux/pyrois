@@ -13,8 +13,10 @@ else
 
 # these need run in the following order:
 clean:
-	${dir_make}/clean.sh
+	sudo /usr/bin/env -i bash -c ". ./project_config.sh && ${dir_make}/clean.sh"
 
+purge_artifacts:
+	${dir_make}/purge_artifacts.sh
 
 dirs:
 	${dir_make}/dirs.sh

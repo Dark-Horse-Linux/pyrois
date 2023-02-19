@@ -1,9 +1,7 @@
-
 function echofail() {
 	echo $1
 	exit 1
 }
-
 
 function mkfaildir() {
 	echo "Creating directory '$1'."
