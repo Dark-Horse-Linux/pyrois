@@ -42,7 +42,6 @@ umask 022
 # $LFS_TGT is what LFS uses for this
 T_TRIPLET=x86_64-dhl-linux-gnu
 
-
 # prevents some configure scripts from looking in the wrong place for config.site 
 CONFIG_SITE=${T_SYSROOT}/usr/share/config.site
 
@@ -67,5 +66,5 @@ assert_zero() {
 		exit $1
 	fi
 }
-
+ARCHLIB_DIR=${T_SYSROOT}/lib64
 PATH=${CROSSTOOLS_DIR}/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin

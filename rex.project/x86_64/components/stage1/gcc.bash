@@ -368,35 +368,42 @@ mode_build_gcc_pass2() {
 	patch -p0 < "${PATCHES_DIR}/gcc_libarchpath_fhs.patch"
 	assert_zero $?
 	
+	# TODO turn this into a patch
+	logprint "Enabling posix thread support..."
+	sed '/thread_header =/s/@.*@/gthr-posix.h/' \
+    -i libgcc/Makefile.in libstdc++-v3/include/Makefile.in
+	assert_zero $?
+	
 	logprint "Entering build subdirectory"
 	mkdir -p build
 	pushd build
 	assert_zero $?
 	
-	logprint "Creating posix thread support compatibility symlink..."
-	mkdir -pv ${T_TRIPLET}/libgcc
-	assert_zero $?
-	
-	ln -s ../../../libgcc/gthr-posix.h ${T_TRIPLET}/libgcc/gthr-default.h
-	assert_zero $?
+	# from SURRO+LFS, removed in LFS
+	# seems to be new cli arg introductions that address this...
+	#logprint "Creating posix thread support compatibility symlink..."
+	#mkdir -pv ${T_TRIPLET}/libgcc
+	#assert_zero $?
+	#ln -s ../../../libgcc/gthr-posix.h ${T_TRIPLET}/libgcc/gthr-default.h
+	#assert_zero $?
 	
 	logprint "Configuring ${APPNAME}..."
 	../configure \
 		--build=$(../config.guess) \
 		--host=${T_TRIPLET} \
+		--target=${T_TRIPLET} \
+		LDFLAGS_FOR_TARGET=-L$PWD/${T_TRIPLET}/libgcc \
 		--prefix=/usr \
-		CC_FOR_TARGET=${T_TRIPLET}-gcc \
 		--with-build-sysroot=${T_SYSROOT} \
-		--enable-initfini-array \
+		--enable-default-pie \
+		--enable-default-ssp \
 		--disable-nls \
 		--disable-multilib \
-		--disable-decimal-float \
 		--disable-libatomic \
 		--disable-libgomp \
 		--disable-libquadmath \
 		--disable-libssp \
 		--disable-libvtv \
-		--disable-libstdcxx \
 		--enable-languages=c,c++
 	assert_zero $?
 	
@@ -412,7 +419,7 @@ mode_install_gcc_pass2() {
 	pushd "${T_SOURCE_DIR}/build"
 	assert_zero $?
 	
-	make -j1 DESTDIR=${T_SYSROOT} install
+	make -DESTDIR=${T_SYSROOT} install
 	assert_zero $?
 	
 	

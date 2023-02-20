@@ -9,11 +9,10 @@ set -a
 # Configuration:
 # ----------------------------------------------------------------------
 # the name of this application
-APPNAME="binutils"
+APPNAME="file"
 
 # the version of this application
-#VERSION="2.25"
-VERSION="2.40"
+VERSION="5.44"
 
 # ----------------------------------------------------------------------
 # Variables and functions sourced from Environment:
@@ -30,24 +29,18 @@ VERSION="2.40"
 # register mode selections
 ARGUMENT_LIST=(
     "stage"
-    "build_pass1"
-    "install_pass1"
-    "pass1"
-    "build_pass2"
-    "install_pass2"
-    "pass2"
+    "build_temp"
+    "install_temp"
+    "all_temp"
     "help"
 )
 
 # modes to associate with switches
 # assumes you want nothing done unless you ask for it.
 MODE_STAGE=false
-MODE_BUILD_PASS1=false
-MODE_INSTALL_PASS1=false
-MODE_PASS1=false
-MODE_BUILD_PASS2=false
-MODE_INSTALL_PASS2=false
-MODE_PASS2=false
+MODE_BUILD_TEMP=false
+MODE_INSTALL_TEMP=false
+MODE_ALL_TEMP=false
 MODE_HELP=false
 
 # the file to log to
@@ -58,7 +51,7 @@ TIMESTAMP="$(date +%Y-%m-%d_%H:%M:%S)"
 
 # the path where logs are written to
 # note: LOGS_ROOT is sourced from environment
-LOG_DIR="${dir_logs}/${APPNAME}-${TIMESTAMP}"
+LOG_DIR="${LOGS_ROOT}/${APPNAME}-${TIMESTAMP}"
 
 # the path where the source will be located when complete
 # note: TEMP_STAGE_DIR is sourced from environment
@@ -72,12 +65,6 @@ opts=$(getopt \
     -- "$@"
 )
 
-# sourced from environment
-TEMP_STAGE_DIR=${TEMP_STAGE_DIR}
-whoami
-ls -l ${TEMP_STAGE_DIR}/../ | grep ${TEMP_STAGE_DIR}
-mkdir -p ${TEMP_STAGE_DIR}
-
 # process supplied arguments into flags that enable execution modes
 eval set --$opts
 while [[ $# -gt 0 ]]; do
@@ -86,28 +73,16 @@ while [[ $# -gt 0 ]]; do
             MODE_STAGE=true
             shift 1
             ;;
-        --build_pass1)
-            MODE_BUILD_PASS1=true
+        --build_temp)
+            MODE_BUILD_TEMP=true
             shift 1
             ;;
-        --install_pass1)
-            MODE_INSTALL_PASS1=true
+        --install_temp)
+            MODE_INSTALL_TEMP=true
             shift 1
             ;;
-        --pass1)
-            MODE_PASS1=true
-            shift 1
-            ;;
-        --build_pass2)
-            MODE_BUILD_PASS2=true
-            shift 1
-            ;;
-        --install_pass2)
-            MODE_INSTALL_PASS2=true
-            shift 1
-            ;;
-        --pass2)
-            MODE_PASS2=true
+        --all_temp)
+            MODE_ALL_TEMP=true
             shift 1
             ;;
         --help)
@@ -138,138 +113,91 @@ mode_stage() {
 	rm -Rf "${T_SOURCE_DIR}"*
 
 	logprint "Extracting ${APPNAME}-${VERSION} source archive to ${TEMP_STAGE_DIR}"
-	tar xf "${SOURCES_DIR}/${APPNAME}-${VERSION}.tar."* -C "${TEMP_STAGE_DIR}" \
-	|| $( logprint "Couldn't locate source tarball.  Did you run \`make download_sources\`?" \
-	&& assert_zero 127 )
-
-	logprint "Extraction complete...Renaming directory "
-	# conditionally rename if it needs it
-	stat "${T_SOURCE_DIR}-"* && mv "${T_SOURCE_DIR}-"* "${T_SOURCE_DIR}" 
+	tar xf "${SOURCES_DIR}/${APPNAME}-${VERSION}.tar."* -C "${TEMP_STAGE_DIR}"
 	assert_zero $?
+
+	# conditionally rename if it needs it
+	stat "${T_SOURCE_DIR}-"* && mv "${T_SOURCE_DIR}-"* "${T_SOURCE_DIR}"
 
 	logprint "Staging operation complete."
 }
 
 # when the build_pass1 mode is enabled, this will execute
-mode_build_pass1() {
+mode_build_temp() {
+	
+	# patch, configure and build
 	logprint "Starting build of ${APPNAME}..."
 	
-	logprint "Entering build dir."	
+	logprint "Entering stage dir."	
 	pushd "${T_SOURCE_DIR}"
-	
-	# sourced from environment:  checks $? -- aborts script execution if non-zero
 	assert_zero $?
-
-	mkdir -p build
+	
+	logprint "Building a local file for signature file generation"
+	mkdir -pv build
 	pushd build
 	assert_zero $?
 	
-	logprint "Configuring binutils pass1..."
 	../configure \
-		--prefix=${CROSSTOOLS_DIR} \
-		--with-sysroot=${T_SYSROOT} \
-		--target=${T_TRIPLET} \
-		--disable-nls \
-		--disable-werror
+		--disable-bzlib \
+		--disable-libseccomp \
+		--disable-xzlib \
+		--disable-zlib
 	assert_zero $?
 	
-	logprint "Compiling..."
 	make
 	assert_zero $?
-
-	logprint "Build operation complete."
-}
-
-mode_build_pass2() {
-	logprint "Starting build of ${APPNAME}..."
 	
-	logprint "Entering build dir."	
-	pushd "${T_SOURCE_DIR}"
-	assert_zero $?
-
-	# hrmmmmmm....
-	logprint "Hack to fix bundled libtool..."
-	sed '6009s/$add_dir//' -i ltmain.sh
-	assert_zero $?
-
-	logprint "Entering build subdir"
-	mkdir -p build
-	pushd build
-	assert_zero $?
+	popd
 	
-	logprint "Configuring binutils pass2..."
-	../configure \
+	logprint "Configuring ${APPNAME}..."
+	./configure \
 		--prefix=/usr \
-		--build=$(../config.guess) \
 		--host=${T_TRIPLET} \
-		--disable-nls \
-		--enable-shared \
-		--enable-gprofng=no \
-		--disable-werror \
-		--enable-64-bit-bfd
+		--build=$(./config.guess)
 	assert_zero $?
 	
 	logprint "Compiling..."
-	make
+	make FILE_COMPILE=$(pwd)/build/src/file
 	assert_zero $?
-
+	
 	logprint "Build operation complete."
 }
 
-mode_install_pass1() {
+mode_install_temp() {
 	logprint "Starting install of ${APPNAME}..."
 	pushd "${T_SOURCE_DIR}/build"
 	assert_zero $?
 	
-	make install
-	assert_zero $?
-	
-	logprint "Install operation complete."
-}
-
-mode_install_pass2() {
-	logprint "Starting install of ${APPNAME}..."
-	pushd "${T_SOURCE_DIR}/build"
-	assert_zero $?
-	
+	logprint "Installing..."
 	make DESTDIR=${T_SYSROOT} install
 	assert_zero $?
 	
-	# doublecheck this
-	logprint "Clean up items..."
-	rm -v ${T_SYSROOT}/usr/lib/lib{bfd,ctf,ctf-nobfd,opcodes}.{a,la}
-	assert_zero $?
+	# error in FHS
+	#logprint "Cleaning up libtool archives..."
+	#rm -v ${T_SYSROOT}/usr/lib/libmagic.la
+	#assert_zero $?
 	
 	logprint "Install operation complete."
 }
 
+
 mode_help() {
-	echo "${APPNAME} [ --stage ] [ --build_pass1 ] [ --install_pass1 ] [ --pass1 ] [ --build_pass2 ] [ --install_pass2 ] [ --pass2 ][ --help ]"
-	exit 0
+	echo "${APPNAME} [ --stage ] [ --build_temp ] [ --install_temp ] [ --all_temp ] [ --help ]"
+	exit 1
 }
 
-# MODE_PASS1 is a meta toggle for all pass1 modes.  Modes will always 
-# run in the correct order.
-if [ "$MODE_PASS1" = "true" ]; then
+if [ "$MODE_ALL_TEMP" = "true" ]; then
 	MODE_STAGE=true
-	MODE_BUILD_PASS1=true
-	MODE_INSTALL_PASS1=true
-fi
-
-if [ "$MODE_PASS2" = "true" ]; then
-	MODE_STAGE=true
-	MODE_BUILD_PASS2=true
-	MODE_INSTALL_PASS2=true
+	MODE_BUILD_TEMP=true
+	MODE_INSTALL_TEMP=true
 fi
 
 # if no options were selected, then show help and exit
 if \
 	[ "$MODE_HELP" != "true" ] && \
 	[ "$MODE_STAGE" != "true" ] && \
-	[ "$MODE_BUILD_PASS1" != "true" ] && \
-	[ "$MODE_INSTALL_PASS1" != "true" ] && \
-	[ "$MODE_BUILD_PASS2" != "true" ] && \
-	[ "$MODE_INSTALL_PASS2" != "true" ]
+	[ "$MODE_BUILD_TEMP" != "true" ] && \
+	[ "$MODE_INSTALL_TEMP" != "true" ]
 then
 	logprint "No option selected during execution."
 	mode_help
@@ -287,27 +215,15 @@ if [ "$MODE_STAGE" = "true" ]; then
 	assert_zero $?
 fi
 
-if [ "$MODE_BUILD_PASS1" = "true" ]; then
-	logprint "Build of PASS1 selected."
-	mode_build_pass1
+if [ "$MODE_BUILD_TEMP" = "true" ]; then
+	logprint "Build of ${APPNAME} selected."
+	mode_build_temp
 	assert_zero $?
 fi
 
-if [ "$MODE_INSTALL_PASS1" = "true" ]; then
-	logprint "Install of PASS1 selected."
-	mode_install_pass1
-	assert_zero $?
-fi
-
-if [ "$MODE_BUILD_PASS2" = "true" ]; then
-	logprint "Build of PASS2 selected."
-	mode_build_pass2
-	assert_zero $?
-fi
-
-if [ "$MODE_INSTALL_PASS2" = "true" ]; then
-	logprint "Install of PASS2 selected."
-	mode_install_pass2
+if [ "$MODE_INSTALL_TEMP" = "true" ]; then
+	logprint "Install of ${APPNAME} selected."
+	mode_install_temp
 	assert_zero $?
 fi
 

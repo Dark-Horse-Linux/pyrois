@@ -14,7 +14,92 @@
 		{
 			"name":			"ncurses pass 1", 
 			"dependencies": [ null ],
-			"comment":		"LFS 11.3-systemd-rc1 Ch. 6.2 (temp tools)"
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 6.3 (temp tools)"
+		},
+		{
+			"name":			"bash pass 1", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 6.4 (temp tools)"
+		},
+		{
+			"name":			"coreutils pass 1", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 6.5 (temp tools)"
+		},
+		{
+			"name":			"diffutils pass 1", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 6.6 (temp tools)"
+		},
+		{
+			"name":			"file pass 1", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 6.7 (temp tools)"
+		},
+		{
+			"name":			"findutils pass 1", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 6.8 (temp tools)"
+		},
+		{
+			"name":			"gawk pass 1", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 6.9 (temp tools)"
+		},
+		{
+			"name":			"grep pass 1", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 6.10 (temp tools)"
+		},
+		{
+			"name":			"gzip pass 1", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 6.11 (temp tools)"
+		},
+		{
+			"name":			"make pass 1", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 6.12 (temp tools)"
+		},
+		{
+			"name":			"patch pass 1", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 6.13 (temp tools)"
+		},
+		{
+			"name":			"sed pass 1", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 6.14 (temp tools)"
+		},
+		{
+			"name":			"tar pass 1", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 6.15 (temp tools)"
+		},
+		{
+			"name":			"xz pass 1", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 6.16 (temp tools)"
+		},
+		{
+			"name":			"binutils pass 2", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 6.17 (temp tools)"
+		},
+		{
+			"name":			"gcc pass 2", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 6.18 (temp tools)"
+		},
+		{
+			"name":			"set sysroot ownership for chroot", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 7.2 (chroot)"
+		},
+		{
+			"name":			"preparing virtual kernel file systems", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 7.3 (chroot)"
 		}
 	]
 }
