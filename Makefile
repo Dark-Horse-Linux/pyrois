@@ -42,12 +42,33 @@ build_stage1:
 build_stage2:
 	sudo /usr/bin/env -i bash -c ". ./project_config.sh && ${dir_make}/build_stage2.sh"
 
+arm_chroot:
+	sudo /usr/bin/env -i bash -c ". ./project_config.sh && ${dir_make}/arm_chroot.sh"
+
+disarm_chroot:
+	sudo /usr/bin/env -i bash -c ". ./project_config.sh && ${dir_make}/disarm_chroot.sh"
+
+enter_chroot:
+	sudo /usr/bin/env -i bash -c ". ./project_config.sh && ${dir_make}/enter_chroot.sh"
+
+#embeds and kicks off rex
+#build_stage3:
+#	sudo /usr/bin/env -i bash -c ". ./project_config.sh && ${dir_make}/build_stage3.sh"
+
 # example:
 # make dirs
 # make install_rex
 # make download_sources
 # make download_patches
 # make build_stage1
+# make build_stage2
+# make arm_chroot
+# make enter_chroot
+
+# Remember, before you make clean or make purge_artifacts you MUST run
+# make disarm_chroot beforehand or you could cause irreversible damage 
+# to your system.  It is recommended that these operations only be 
+# performed on a VM, and the host distribution is only tested on Fedora.
 
 # end dependency loading block
 endif

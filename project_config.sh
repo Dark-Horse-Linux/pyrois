@@ -17,7 +17,6 @@ echo "Loading project_config.sh...."
 # this is where the directory for foster is located. serves as the 
 # parent directory for most other directories
 project_root="$(dirname $(readlink -f "${BASH_SOURCE[0]}"))"
-
 # the project files for the make system that is used to orchestrate the 
 # build steps
 dir_make=${project_root}/make.project
