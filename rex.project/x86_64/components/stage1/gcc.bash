@@ -365,13 +365,13 @@ mode_build_gcc_pass2() {
 	
 	# patches
 	logprint "Applying patches..."
-	patch -p0 < "${PATCHES_DIR}/gcc_libarchpath_fhs.patch"
+	#patch -p0 < "${PATCHES_DIR}/gcc_libarchpath_fhs.patch"
+	sed -e '/m64=/s/lib64/lib/' -i.orig gcc/config/i386/t-linux64
 	assert_zero $?
 	
 	# TODO turn this into a patch
 	logprint "Enabling posix thread support..."
-	sed '/thread_header =/s/@.*@/gthr-posix.h/' \
-    -i libgcc/Makefile.in libstdc++-v3/include/Makefile.in
+	sed '/thread_header =/s/@.*@/gthr-posix.h/' -i libgcc/Makefile.in libstdc++-v3/include/Makefile.in
 	assert_zero $?
 	
 	logprint "Entering build subdirectory"
@@ -419,7 +419,7 @@ mode_install_gcc_pass2() {
 	pushd "${T_SOURCE_DIR}/build"
 	assert_zero $?
 	
-	make -DESTDIR=${T_SYSROOT} install
+	make DESTDIR=${T_SYSROOT} install
 	assert_zero $?
 	
 	
@@ -462,6 +462,7 @@ fi
 
 if [ "$MODE_GCC_PASS2" = "true" ]; then
 	logprint "PASS2 selected."
+	rm -Rf ${T_SOURCE_DIR}
 	MODE_STAGE=true
 	MODE_BUILD_GCC_PASS2=true
 	MODE_INSTALL_GCC_PASS2=true

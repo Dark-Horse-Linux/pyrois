@@ -326,7 +326,7 @@
     },
     {
         "name":         			"set sysroot ownership for chroot",
-        "target":       			"components/stage1/fix_chroot_perms.bash",
+        "target":       			"components/stage2/fix_chroot_perms.bash",
 		"is_shell_command":			true,
 		"shell_definition":			"bash",
 		"force_pty":				true,
@@ -344,7 +344,7 @@
     },
     {
         "name":         			"preparing virtual kernel file systems",
-        "target":       			"components/stage1/prepare_vkfs.bash",
+        "target":       			"components/stage2/prepare_vkfs.bash",
 		"is_shell_command":			true,
 		"shell_definition":			"bash",
 		"force_pty":				true,
