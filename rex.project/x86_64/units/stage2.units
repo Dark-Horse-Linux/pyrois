@@ -323,7 +323,7 @@
         "group":        			"phanes",
 		"supply_environment":		true,
         "environment":  			"environments/stage2.env.bash"
-    }
+    },
     {
         "name":         			"set sysroot ownership for chroot",
         "target":       			"components/stage1/fix_chroot_perms.bash",
