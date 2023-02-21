@@ -2,7 +2,7 @@
 	"plan":
 	[
 		{
-			"name":			"welcome", 
+			"name":			"welcome 2", 
 			"dependencies": [ null ],
 			"comment":		"greet the user"
 		},
@@ -100,6 +100,11 @@
 			"name":			"preparing virtual kernel file systems", 
 			"dependencies": [ null ],
 			"comment":		"LFS 11.3-systemd-rc1 Ch. 7.3 (chroot)"
+		},
+		{
+			"name":			"populate initial users and groups", 
+			"dependencies": [ null ],
+			"comment":		"OOO: LFS 11.3-systemd-rc1 Ch. 7.6 (chroot)"
 		}
 	]
 }

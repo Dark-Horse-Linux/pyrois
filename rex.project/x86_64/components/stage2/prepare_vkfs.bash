@@ -46,6 +46,11 @@ logprint "mounting proc filesystem from to chroot sysroot..."
 is_mounted ${T_SYSROOT}/proc || mount -v -t proc proc ${T_SYSROOT}/proc
 assert_zero $?
 
+logprint "mounting pyrois inside of chroot"
+mkdir -p ${T_SYSROOT}/rex_embedded
+is_mounted ${project_root} || mount -v --bind ${project_root} ${T_SYSROOT}/rex_embedded
+assert_zero $?
+
 # not a symlink on ubuntu
 if [ -h ${T_SYSROOT}/dev/shm ]; then
 	mkdir -vp ${T_SYSROOT}/$(readlink ${T_SYSROOT})/dev/shm

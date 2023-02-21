@@ -46,7 +46,10 @@ is_mounted ${T_SYSROOT}/proc && umount -l ${T_SYSROOT}/proc
 
 # not a symlink on ubuntu
 logprint "Unmounting ${T_SYSROOT}/dev/shm"
-ismounted ${T_SYSROOT}/dev/shm && umount -l {${T_SYSROOT}/dev/shm
+is_mounted ${T_SYSROOT}/dev/shm && umount -l ${T_SYSROOT}/dev/shm
+
+logprint "Unmounting pyrois inside of chroot"
+is_mounted ${T_SYSROOT}/rex_embedded && umount -l ${T_SYSROOT}/rex_embedded
 
 echo
 logprint "You can now safely delete the chroot."

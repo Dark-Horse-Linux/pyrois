@@ -1,7 +1,7 @@
 #!/bin/bash
 APPNAME="CHROOT VFS SETUP"
 T_SYSROOT=${dir_sysroot}
-
+set -a
 assert_zero() {
 	if [[ "$1" -eq 0 ]]; then 
 		return
@@ -51,12 +51,15 @@ logprint "mounting proc filesystem from to chroot sysroot..."
 is_mounted ${T_SYSROOT}/proc || mount -v -t proc proc ${T_SYSROOT}/proc
 assert_zero $?
 
+logprint "mounting shm"
 # not a symlink on ubuntu
 if [ -h ${T_SYSROOT}/dev/shm ]; then
-	mkdir -vp ${T_SYSROOT}/$(readlink ${T_SYSROOT})/dev/shm
+	mkdir -vp ${T_SYSROOT}/$(readlink "${T_SYSROOT}/dev/shm")
 	assert_zero $?
 else
-	mount -t tmpfs -o nosuid,nodev tmpfs ${T_SYSROOT}/dev/shm
+	is_mounted ${T_SYSROOT}/dev/shm || mount -t tmpfs -o nosuid,nodev tmpfs ${T_SYSROOT}/dev/shm
 fi
 
-
+logprint "mounting rex_embedded for stage3 capability"
+mkdir -p ${T_SYSROOT}/rex_embedded
+is_mounted ${T_SYSROOT}/rex_embedded || mount -v --bind ${project_root} ${T_SYSROOT}/rex_embedded

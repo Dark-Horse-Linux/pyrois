@@ -1,7 +1,7 @@
 {
   "units": [
     {
-        "name":         			"welcome",
+        "name":         			"welcome 2",
         "target":       			"components/stage2/welcome.bash",
 		"is_shell_command":			true,
 		"shell_definition":			"bash",
@@ -345,6 +345,24 @@
     {
         "name":         			"preparing virtual kernel file systems",
         "target":       			"components/stage2/prepare_vkfs.bash",
+		"is_shell_command":			true,
+		"shell_definition":			"bash",
+		"force_pty":				true,
+		"set_working_directory":	false,
+		"working_directory":		"",
+        "rectify":      			false,
+        "rectifier":    			"",
+        "active":       			true,
+        "required":     			true,
+		"set_user_context": 		true,
+        "user":         			"root",
+        "group":        			"root",
+		"supply_environment":		true,
+        "environment":  			"environments/stage2.env.bash"
+    },
+    {
+        "name":         			"populate initial users and groups",
+        "target":       			"components/stage2/populate_ug.bash",
 		"is_shell_command":			true,
 		"shell_definition":			"bash",
 		"force_pty":				true,
