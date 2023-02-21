@@ -11,13 +11,15 @@ ifndef project_root
 else 
 
 
-# these need run in the following order:
 clean:
 	sudo /usr/bin/env -i bash -c ". ./project_config.sh && ${dir_make}/clean.sh"
 
+# same as clean, but retain logs
 purge_artifacts:
 	${dir_make}/purge_artifacts.sh
 
+
+# these need run in the following order:
 dirs:
 	${dir_make}/dirs.sh
 
@@ -48,12 +50,14 @@ arm_chroot:
 disarm_chroot:
 	sudo /usr/bin/env -i bash -c ". ./project_config.sh && ${dir_make}/disarm_chroot.sh"
 
+# do not enter the chroot like this unless you have run arm_chroot.  
+# build_stage2 does this automatically.
 enter_chroot:
 	sudo /usr/bin/env -i bash -c ". ./project_config.sh && ${dir_make}/enter_chroot.sh"
 
 #embeds and kicks off rex
-#build_stage3:
-#	sudo /usr/bin/env -i bash -c ". ./project_config.sh && ${dir_make}/build_stage3.sh"
+build_stage3:
+	sudo /usr/bin/env -i bash -c ". ./project_config.sh && ${dir_make}/build_stage3.sh"
 
 # example:
 # make dirs
@@ -62,8 +66,8 @@ enter_chroot:
 # make download_patches
 # make build_stage1
 # make build_stage2
-# make arm_chroot
-# make enter_chroot
+# optional: make enter_chroot
+# make build_stage3
 
 # Remember, before you make clean or make purge_artifacts you MUST run
 # make disarm_chroot beforehand or you could cause irreversible damage 
