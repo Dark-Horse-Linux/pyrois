@@ -69,6 +69,8 @@ build_stage3:
 # optional: make enter_chroot
 # make build_stage3
 
+all: disarm_chroot clean dirs install_rex download_patches download_sources build_stage1 build_stage2 build_stage3
+
 # Remember, before you make clean or make purge_artifacts you MUST run
 # make disarm_chroot beforehand or you could cause irreversible damage 
 # to your system.  It is recommended that these operations only be 

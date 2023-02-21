@@ -40,7 +40,7 @@ dir_logs=${project_root}/logs
 # config directory - general path for configuration files on the target
 # system before they're placed, as well as various values for configure
 # of the build
-dir_configs=${dir_stage}/configs
+dir_configs=${project_root}/configs
 
 # the patches directory.  this contains all the patches we use during
 # the foster build
