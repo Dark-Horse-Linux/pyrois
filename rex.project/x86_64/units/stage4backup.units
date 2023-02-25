@@ -1,0 +1,22 @@
+{
+  "units": [
+    {
+        "name":         			"offer backup",
+        "target":       			"components/stage4backup/offer_backup.bash",
+		"is_shell_command":			true,
+		"shell_definition":			"bash",
+		"force_pty":				true,
+		"set_working_directory":	false,
+		"working_directory":		"",
+        "rectify":      			false,
+        "rectifier":    			"",
+        "active":       			true,
+        "required":     			true,
+		"set_user_context": 		true,
+        "user":         			"root",
+        "group":        			"root",
+		"supply_environment":		true,
+        "environment":  			"environments/stage2.env.bash"
+    }
+ ]
+}

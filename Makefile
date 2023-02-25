@@ -55,21 +55,31 @@ disarm_chroot:
 enter_chroot:
 	sudo /usr/bin/env -i bash -c ". ./project_config.sh && ${dir_make}/enter_chroot.sh"
 
-#embeds and kicks off rex
+#embeds and kicks off rex from inside chroot
 build_stage3:
 	sudo /usr/bin/env -i bash -c ". ./project_config.sh && ${dir_make}/build_stage3.sh"
 
-# example:
-# make dirs
-# make install_rex
-# make download_sources
-# make download_patches
-# make build_stage1
-# make build_stage2
-# optional: make enter_chroot
-# make build_stage3
+# offers to back up
+build_stage4backup:
+	sudo /usr/bin/env -i bash -c ". ./project_config.sh && ${dir_make}/build_stage4backup.sh"
 
-all: disarm_chroot clean dirs install_rex download_patches download_sources build_stage1 build_stage2 build_stage3
+build_stage4:
+	sudo /usr/bin/env -i bash -c ". ./project_config.sh && ${dir_make}/build_stage4.sh"
+
+
+# example:
+# 	make dirs
+# 	make install_rex
+# 	make download_sources
+# 	make download_patches
+# 	make build_stage1
+# 	make build_stage2
+# 	optional: make enter_chroot
+# 	make build_stage3
+# 	optional: make build_stage4backup
+# 	make build_stage4
+
+all: disarm_chroot clean dirs install_rex download_patches download_sources build_stage1 build_stage2 build_stage3 build_stage4backup build_stage4
 
 # Remember, before you make clean or make purge_artifacts you MUST run
 # make disarm_chroot beforehand or you could cause irreversible damage 
