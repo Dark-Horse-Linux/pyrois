@@ -77,9 +77,13 @@ build_stage3:
 	sudo /usr/bin/env -i bash -c ". ./project_config.sh && ${dir_make}/build_stage3.sh"
 
 # offers to back up
-build_stage4backup:
+backup:
 	set -e
-	sudo /usr/bin/env -i bash -c ". ./project_config.sh && ${dir_make}/build_stage4backup.sh"
+	sudo /usr/bin/env -i bash -c ". ./project_config.sh && ${dir_make}/backup_create.sh"
+
+restore_backup:
+	set -e
+	sudo bash -c ". ./project_config.sh && ${dir_make}/backup_restore.sh"
 
 build_stage4:
 	set -e
@@ -110,7 +114,7 @@ all:
 	make build_stage1 && \
 	make build_stage2 && \
 	make build_stage3 && \
-	make build_stage4backup && \
+	make backup && \
 	make build_stage4
 
 
