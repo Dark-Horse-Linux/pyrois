@@ -7,3 +7,4 @@ echo
 echo "Deleting ${dir_stage}"
 rm -Rf ${dir_logs}
 echo
+

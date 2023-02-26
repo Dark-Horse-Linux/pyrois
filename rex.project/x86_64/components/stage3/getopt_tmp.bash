@@ -12,7 +12,7 @@ set -a
 APPNAME="util-linux"
 
 # the version of this application
-VERSION="2.38.1"
+VERSION="2.36.2"
 
 # ----------------------------------------------------------------------
 # Variables and functions sourced from Environment:
@@ -27,21 +27,6 @@ VERSION="2.38.1"
 # The parent directory of where source archives are extracted to.
 
 # register mode selections
-ARGUMENT_LIST=(
-    "stage"
-    "build"
-    "install"
-    "all"
-    "help"
-)
-
-# modes to associate with switches
-# assumes you want nothing done unless you ask for it.
-MODE_STAGE=false
-MODE_BUILD=false
-MODE_INSTALL=false
-MODE_ALL=true
-MODE_HELP=false
 
 # the file to log to
 LOGFILE="${APPNAME}.log"
@@ -57,44 +42,6 @@ LOG_DIR="${LOGS_ROOT}/${APPNAME}-${TIMESTAMP}"
 # note: TEMP_STAGE_DIR is sourced from environment
 T_SOURCE_DIR="${TEMP_STAGE_DIR}/${APPNAME}"
 
-# read defined arguments
-opts=$(getopt \
-    --longoptions "$(printf "%s," "${ARGUMENT_LIST[@]}")" \
-    --name "$APPNAME" \
-    --options "" \
-    -- "$@"
-)
-
-# process supplied arguments into flags that enable execution modes
-eval set --$opts
-while [[ $# -gt 0 ]]; do
-    case "$1" in
-        --stage)
-            MODE_STAGE=true
-            shift 1
-            ;;
-        --build)
-            MODE_BUILD=true
-            shift 1
-            ;;
-        --install)
-            MODE_INSTALL=true
-            shift 1
-            ;;
-        --all)
-            MODE_ALL=true
-            shift 1
-            ;;
-        --help)
-            MODE_HELP=true
-            shift 1
-            ;;
-        *)
-            break
-            ;;
-    esac
-done
-
 # print to stdout, print to log
 logprint() {
 	mkdir -p "${LOG_DIR}"
@@ -106,7 +53,7 @@ logprint() {
 logprint "Initializing the ${APPNAME} utility..."
 
 # when the stage mode is enabled, this will execute
-mode_stage() {
+stage() {
 	logprint "Starting stage of ${APPNAME}..."
 
 	logprint "Removing any pre-existing staging for ${APPNAME}."
@@ -123,22 +70,20 @@ mode_stage() {
 }
 
 # when the build_pass1 mode is enabled, this will execute
-mode_build() {
-	
+build() {
 	# patch, configure and build
-	logprint "Starting build of ${APPNAME}..."
-	
-	mkdir -p /var/lib/hwclock
-	assert_zero $?
+	logprint "Starting build of temporary getopt from ${APPNAME}..."
 
+	logprint "Creating hwclock dir..."
+	mkdir -pv ${T_SYSROOT}/var/lib/hwclock
+	
 	logprint "Entering stage dir."	
 	pushd "${T_SOURCE_DIR}"
 	assert_zero $?
-		
+	
 	logprint "Configuring ${APPNAME}..."
 	./configure ADJTIME_PATH=/var/lib/hwclock/adjtime \
-		--libdir=/usr/lib \
-		--docdir=/usr/share/doc/util-linux-${VERSION} \
+		--docdir=/usr/share/doc/util-linux-2.36.2 \
 		--disable-chfn-chsh \
 		--disable-login \
 		--disable-nologin \
@@ -158,68 +103,20 @@ mode_build() {
 	logprint "Build operation complete."
 }
 
-mode_install() {
+install_getopt() {
 	logprint "Starting install of ${APPNAME}..."
 	pushd "${T_SOURCE_DIR}"
 	assert_zero $?
 	
-	logprint "Installing..."
-	make install
-	assert_zero $?
-
 	logprint "Installing getopt..."
-	cp ./getopt /usr/bin/
+	cp -v ./getopt ${T_SYSROOT}/usr/local/bin/getopt
 	assert_zero $?
 	
-	logprint "Partial install operation complete."
+	logprint "Install operation complete."
 }
 
-
-mode_help() {
-	echo "${APPNAME} [ --stage ] [ --build ] [ --install ] [ --all ] [ --help ]"
-	exit 1
-}
-
-if [ "$MODE_ALL" = "true" ]; then
-	MODE_STAGE=true
-	MODE_BUILD=true
-	MODE_INSTALL=true
-fi
-
-# if no options were selected, then show help and exit
-if \
-	[ "$MODE_HELP" != "true" ] && \
-	[ "$MODE_STAGE" != "true" ] && \
-	[ "$MODE_BUILD" != "true" ] && \
-	[ "$MODE_INSTALL" != "true" ]
-then
-	logprint "No option selected during execution."
-	mode_help
-fi
-
-# if help was supplied at all, show help and exit
-if [ "$MODE_HELP" = "true" ]; then
-	logprint "Help option selected.  Printing options and exiting."
-	mode_help
-fi
-
-if [ "$MODE_STAGE" = "true" ]; then
-	logprint "Staging option selected."
-	mode_stage
-	assert_zero $?
-fi
-
-if [ "$MODE_BUILD" = "true" ]; then
-	logprint "Build of ${APPNAME} selected."
-	mode_build
-	assert_zero $?
-fi
-
-if [ "$MODE_INSTALL" = "true" ]; then
-	logprint "Install of ${APPNAME} selected."
-	mode_install
-	assert_zero $?
-fi
-
+stage
+build
+install_getopt
 logprint "Execution of ${APPNAME} completed."
 

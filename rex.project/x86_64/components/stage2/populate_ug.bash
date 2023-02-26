@@ -4,7 +4,7 @@
 # the path where logs are written to
 # note: LOGS_ROOT is sourced from environment
 
-APPNAME="CHROOT PASSWD/GROUPS"
+APPNAME="CHROOT PASSWD GROUPS"
 
 # ISO 8601 variation
 TIMESTAMP="$(date +%Y-%m-%d_%H:%M:%S)"

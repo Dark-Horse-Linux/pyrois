@@ -50,12 +50,11 @@ CONFIG_SITE=/usr/share/config.site
 MAKEFLAGS="-j$(nproc)"
 
 # where the cross-compiler gets installed ($LFS/tools)
-CROSSTOOLS_DIR=/xtools
 TEMP_STAGE_DIR=/source_stage
 # from project_config
 SOURCES_DIR=/rex_embedded/stage/sources
 PATCHES_DIR=/rex_embedded/stage/patches
-LOGS_ROOT=/rex_embedded/logs/apps/stage3
+LOGS_ROOT=/rex_embedded/logs/apps/stage4
 CONFIGS_DIR=/rex_embedded/configs
 
 # fail the unit in the event of a non-zero value passed

@@ -29,7 +29,7 @@ rm -rvf /usr/share/{info,man,doc}/*
 assert_zero $?
 
 logprint "Removing temp libtool artifacts..."
-find /usr/{lib,exec} -name \*.la -delete
+find /usr/{lib,libexec} -name \*.la -delete
 assert_zero $?
 
 logprint "Cleaning out Temporary Cross-Compilation Toolchain"

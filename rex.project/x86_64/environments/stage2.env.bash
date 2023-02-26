@@ -54,7 +54,7 @@ TEMP_STAGE_DIR=${T_SYSROOT}/source_stage
 # from project_config
 SOURCES_DIR=${dir_sources}
 PATCHES_DIR=${dir_patches}
-LOGS_ROOT=${dir_logs}
+LOGS_ROOT=${dir_logs}/apps/stage2
 
 # fail the unit in the event of a non-zero value passed
 # used primarily to check exit codes on previous commands

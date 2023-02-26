@@ -30,3 +30,4 @@ logprint() {
     PS1='\n(dark horse linux) [ \u @ \H ] << \w >>\n\n[- ' \
     PATH=/usr/bin:/usr/sbin     \
     /bin/bash --login
+exit $?

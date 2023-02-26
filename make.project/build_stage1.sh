@@ -17,3 +17,4 @@ ${dir_localtools}/rex -v \
 	-p ${dir_rex}/x86_64/plans/stage1.plan
 
 retVal=$?
+exit $retVal

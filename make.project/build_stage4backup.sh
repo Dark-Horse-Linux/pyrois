@@ -16,3 +16,4 @@ ${dir_localtools}/rex -v \
 	-p ${dir_rex}/x86_64/plans/stage4backup.plan
 
 retVal=$?
+exit $retVal

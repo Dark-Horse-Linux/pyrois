@@ -28,3 +28,4 @@ err=$?
 popd 1>/dev/null 2>/dev/null
 
 echo "Finished with exit code $err"
+exit $err

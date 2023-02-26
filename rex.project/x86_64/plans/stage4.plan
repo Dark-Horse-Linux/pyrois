@@ -1,0 +1,40 @@
+{
+	"plan":
+	[
+		{
+			"name":			"welcome 4", 
+			"dependencies": [ null ],
+			"comment":		"greet the user"
+		},
+		{
+			"name":			"man pages", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.3"
+		},
+		{
+			"name":			"iana-etc", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.4"
+		},
+		{
+			"name":			"glibc final", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.5"
+		},
+		{
+			"name":			"zlib", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.6"
+		},
+		{
+			"name":			"bzip2", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.7"
+		},
+		{
+			"name":			"xz", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.8"
+		}
+	]
+}

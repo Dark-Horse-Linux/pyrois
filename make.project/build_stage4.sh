@@ -30,3 +30,4 @@ dir_rex=/rex_embedded/rex.project
 
 retVal=$?
 echo "Rex exited with error code '$retVal'."
+exit $retVal

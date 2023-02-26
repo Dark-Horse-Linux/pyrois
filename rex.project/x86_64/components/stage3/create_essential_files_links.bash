@@ -29,7 +29,7 @@ ln -sv /proc/self/mounts /etc/mtab
 assert_zero $?
 
 logprint "Staging /etc/hosts file"
-cp -f ${dir_configs}/etc_hosts 		/etc/hosts
+cp -f ${CONFIGS_DIR}/etc_hosts 		/etc/hosts
 assert_zero $?
 
 logprint "creating a temporary user and group for some tests later"
