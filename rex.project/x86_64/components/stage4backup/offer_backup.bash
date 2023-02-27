@@ -55,7 +55,7 @@ function perform_backup() {
 	disarm_chroot
 	disarm_chroot
 	logprint "Performing backup...This will take a long time..."
-	tar czfp ${project_root}/${TIMESTAMP}.backup.tgz ${dir_stage}
+	tar cpzf ${project_root}/${TIMESTAMP}.backup.tgz ${dir_stage}
 	assert_zero $?
 	logprint "Backup completed successfully.  Moving on."
 	logprint "Entering project root."

@@ -66,27 +66,52 @@ function clear_stage() {
 	make clean
 }
 
+function fail_easy() {
+	logprint "$1"
+	exit 0
+}
 
 function restore() {
-	# select a backup file
-	FILE=$(dialog --title "Choose a restore point." --stdout --title "Please choose an archive to restore from." --fselect ${project_root} 14 48)
-	
-	[ ! -z $FILE ] || logprint "User canceled restore." && exit 0
+	backup_files=($(ls $project_root | grep "backup.tgz"))
+	# Create an array to store the options for the dialog
+	options=()
+	for file in "${backup_files[@]}"; do
+		options+=("$file" "$file" off)
+	done
 
-	logprint "Entering backup routine.  Clearing stage."
-	clear_stage
 	
-	logprint "Restoring backup...This will take a long time..."
-	tar xphf $FILE
-	assert_zero $?
+	selected=$(dialog --clear --title "Backup Files" \
+                --radiolist "Select a backup file:" 20 75 15 \
+                "${options[@]}" \
+                3>&1 1>&2 2>&3)
+	response=$?
+	echo "User selected '$selected'"
+	[ ! -z $selected ] || fail_easy "User canceled restore."
+
+	dialog --backtitle "Dark Horse Linux: Pyrois" --title "Restore From Backup" --yesno "Selected: '$selected'." 10 60
+	response=$?
 	
-	logprint "Backup restored successfully.  Arming chroot."
-	pushd ${project_root}
-	assert_zero $?
-	make arm_chroot
-	echo
-	logprint "You may now proceed to run 'make build_stage4' or higher."
-	echo
+	if [ $response -eq 0 ]; then
+		logprint "Entering backup routine.  Clearing stage."
+		clear_stage
+		sleep 1
+		logprint "Restoring backup...This will take a long time..."
+		tar xphf ${project_root}/$selected
+		assert_zero $?
+		
+		logprint "Backup restored successfully.  Arming chroot."
+		pushd ${project_root}
+		assert_zero $?
+		make arm_chroot
+		echo
+		logprint "You may now proceed to run 'make build_stage4' or higher."
+		echo
+	else
+			logprint "User canceled.  Moving on."
+			exit 0
+	fi
+	
+	
 }
 
 
