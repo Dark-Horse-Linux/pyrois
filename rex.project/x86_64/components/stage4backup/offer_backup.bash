@@ -4,7 +4,7 @@
 APPNAME="Offer Backup"
 
 # ISO 8601 variation
-TIMESTAMP="$(date +%Y-%m-%d_%H:%M:%S)"
+TIMESTAMP="$(date +%Y-%m-%d_%H%M%S)"
 
 LOG_DIR="${LOGS_ROOT}/${APPNAME}-${TIMESTAMP}"
 
@@ -55,7 +55,8 @@ function perform_backup() {
 	disarm_chroot
 	disarm_chroot
 	logprint "Performing backup...This will take a long time..."
-	tar cpzf ${project_root}/${TIMESTAMP}.backup.tgz ${dir_stage}
+	pushd ${dir_artifacts}
+	tar cpzf ${project_root}/${TIMESTAMP}.backup.tgz *
 	assert_zero $?
 	logprint "Backup completed successfully.  Moving on."
 	logprint "Entering project root."

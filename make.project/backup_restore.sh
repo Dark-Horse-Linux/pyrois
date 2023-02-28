@@ -30,6 +30,15 @@ logprint() {
 
 logprint "Giving the user the option of backing up before proceeding."
 
+assert_zero() {
+	if [[ "$1" -eq 0 ]]; then 
+		return
+	else
+		exit $1
+	fi
+}
+
+
 is_mounted() {
 	findmnt $1 &> /dev/null
 	if [ $? != 0 ]; then
@@ -62,8 +71,8 @@ function disarm_chroot() {
 }
 
 function clear_stage() {
-	pushd ${project_root}
-	make clean
+	rm -Rf ${T_SYSROOT}
+	assert_zero $?
 }
 
 function fail_easy() {
@@ -72,7 +81,13 @@ function fail_easy() {
 }
 
 function restore() {
+	disarm_chroot
 	backup_files=($(ls $project_root | grep "backup.tgz"))
+	if [[ ${#backup_files[@]} -lt 1 ]]; then
+		logprint "No archives present in '$project_root'.  Nothing to restore from. Exiting."
+			exit 1
+	fi
+	
 	# Create an array to store the options for the dialog
 	options=()
 	for file in "${backup_files[@]}"; do
@@ -96,7 +111,12 @@ function restore() {
 		clear_stage
 		sleep 1
 		logprint "Restoring backup...This will take a long time..."
-		tar xphf ${project_root}/$selected
+		echo
+		logprint "Entering ${dir_artifacts}..."
+		echo
+		pushd ${dir_artifacts}
+		assert_zero $?
+		tar xvpf ${project_root}/$selected
 		assert_zero $?
 		
 		logprint "Backup restored successfully.  Arming chroot."
