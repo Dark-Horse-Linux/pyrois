@@ -1,0 +1,10 @@
+{
+	"plan":
+	[
+		{
+			"name":			"welcome master", 
+			"dependencies": [ null ],
+			"comment":		"greet the user"
+		}
+	]
+}

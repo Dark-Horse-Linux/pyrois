@@ -13,7 +13,7 @@ echo "Bootstrapping from MAKE to REX..."
 
 ${dir_localtools}/rex -v \
 	-c ${dir_rex}/x86_64/rex.config \
-	-p ${dir_rex}/x86_64/plans/stage4backup.plan
+	-p ${dir_rex}/x86_64/plans/backup.plan
 
 retVal=$?
 exit $retVal

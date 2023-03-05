@@ -9,10 +9,10 @@ set -a
 # Configuration:
 # ----------------------------------------------------------------------
 # the name of this application
-APPNAME="zstd"
+APPNAME="m4"
 
 # the version of this application
-VERSION="1.5.4"
+VERSION="1.4.19"
 
 # ----------------------------------------------------------------------
 # Variables and functions sourced from Environment:
@@ -128,18 +128,22 @@ mode_build() {
 	# patch, configure and build
 	logprint "Starting build of ${APPNAME}..."
 	
-	logprint "Entering stage dir."	
+	logprint "Entering build dir."	
 	pushd "${T_SOURCE_DIR}"
 	assert_zero $?
 		
-	
-	logprint "Compiling..."
-	make prefix=/usr
+	logprint "Configuring ${APPNAME}..."
+	./configure --prefix=/usr 
 	assert_zero $?
 	
-	logprint "Checking ${APPNAME}"
+	logprint "Compiling..."
+	make
+	assert_zero $?
+
+	logprint "Checking"
 	make check
-	
+	logprint "Checks exited with '$?'. "
+
 	logprint "Build operation complete."
 }
 
@@ -149,11 +153,7 @@ mode_install() {
 	assert_zero $?
 	
 	logprint "Installing..."
-	make prefix=/usr install
-	assert_zero $?
-	
-	logprint "Cleaning up..."
-	rm -v /usr/lib/libzstd.a
+	make install
 	assert_zero $?
 		
 	logprint "Install operation complete."
@@ -161,8 +161,8 @@ mode_install() {
 
 
 mode_help() {
-	echo "${APPNAME} [ --stage ] [ --build ] [ --install ] [ --all ] [ --help ]"
-	exit 1
+	echo "${APPNAME} [ --stage ] [ --build_temp ] [ --install_temp ] [ --all_temp ] [ --help ]"
+	exit 0
 }
 
 if [ "$MODE_ALL" = "true" ]; then
@@ -207,4 +207,3 @@ if [ "$MODE_INSTALL" = "true" ]; then
 fi
 
 logprint "Execution of ${APPNAME} completed."
-

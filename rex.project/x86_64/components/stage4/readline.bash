@@ -12,7 +12,7 @@ set -a
 APPNAME="readline"
 
 # the version of this application
-VERSION="8.1"
+VERSION="8.2"
 
 # ----------------------------------------------------------------------
 # Variables and functions sourced from Environment:
@@ -131,9 +131,19 @@ mode_build() {
 	logprint "Entering stage dir."	
 	pushd "${T_SOURCE_DIR}"
 	assert_zero $?
-		
+
+	
 	logprint "Applying patches..."
-	patch -Np1 -i ${PATCHES_DIR}/readline-8.1-ldconfig_fix.patch
+		
+	# TODO convert these to patches
+	sed -i '/MV.*old/d' Makefile.in
+	assert_zero $?
+
+	# TODO convert these to patches
+	sed -i '/{OLDSUFF}/c:' support/shlib-install
+	assert_zero $?
+
+	patch -Np1 -i ${PATCHES_DIR}/readline-${VERSION}-upstream_fix-1.patch
 	assert_zero $?
 	
 	logprint "Configuring ${APPNAME}"
@@ -141,16 +151,14 @@ mode_build() {
 		--prefix=/usr \
 		--disable-static \
 		--with-curses \
-		--docdir=/usr/share/doc/readline-8.1
+		--docdir=/usr/share/doc/readline-${VERSION}
 		
 	assert_zero $?
 	
 	logprint "Compiling..."
+	
 	make SHLIB_LIBS="-lncursesw"
 	assert_zero $?
-	
-	logprint "Checking ${APPNAME}"
-	make check
 	
 	logprint "Build operation complete."
 }
@@ -164,18 +172,8 @@ mode_install() {
 	make SHLIB_LIBS="-lncursesw" install
 	assert_zero $?
 	
-	logprint "Cleaning up..."
-	mv -v /usr/lib/lib{readline,history}.so.* /lib
-	assert_zero $?
-	
-	ln -sfv ../../lib/$(readlink /usr/lib/libreadline.so) /usr/lib/libreadline.so
-	assert_zero $?
-	
-	ln -sfv ../../lib/$(readlink /usr/lib/libhistory.so ) /usr/lib/libhistory.so
-	assert_zero $?
-	
 	logprint "Installing documentation..."
-	install -v -m644 doc/*.{ps,pdf,html,dvi} /usr/share/doc/readline-8.1
+	install -v -m644 doc/*.{ps,pdf,html,dvi} /usr/share/doc/readline-${VERSION}
 	assert_zero $?
 	
 	logprint "Install operation complete."

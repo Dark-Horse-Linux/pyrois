@@ -1,8 +1,8 @@
 {
   "units": [
     {
-        "name":         			"offer backup",
-        "target":       			"components/stage4backup/offer_backup.bash",
+        "name":         			"welcome master",
+        "target":       			"components/master/welcome.bash",
 		"is_shell_command":			true,
 		"shell_definition":			"bash",
 		"force_pty":				true,
@@ -16,7 +16,7 @@
         "user":         			"root",
         "group":        			"root",
 		"supply_environment":		true,
-        "environment":  			"environments/stage2.env.bash"
+        "environment":  			"environments/stage4.env.bash"
     }
  ]
 }

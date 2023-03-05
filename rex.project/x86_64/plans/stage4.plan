@@ -35,6 +35,26 @@
 			"name":			"xz", 
 			"dependencies": [ null ],
 			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.8"
+		},
+		{
+			"name":			"zstd", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.9"
+		},
+		{
+			"name":			"file final", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.10"
+		},
+		{
+			"name":			"readline final", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.11"
+		},
+		{
+			"name":			"m4 final", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.12"
 		}
 	]
 }

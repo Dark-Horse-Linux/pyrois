@@ -12,7 +12,7 @@ set -a
 APPNAME="file"
 
 # the version of this application
-VERSION="5.39"
+VERSION="5.44"
 
 # ----------------------------------------------------------------------
 # Variables and functions sourced from Environment:
@@ -29,18 +29,18 @@ VERSION="5.39"
 # register mode selections
 ARGUMENT_LIST=(
     "stage"
-    "build_temp"
-    "install_temp"
-    "all_temp"
+    "build"
+    "install"
+    "all"
     "help"
 )
 
 # modes to associate with switches
 # assumes you want nothing done unless you ask for it.
 MODE_STAGE=false
-MODE_BUILD_TEMP=false
-MODE_INSTALL_TEMP=false
-MODE_ALL_TEMP=false
+MODE_BUILD=false
+MODE_INSTALL=false
+MODE_ALL=false
 MODE_HELP=false
 
 # the file to log to
@@ -73,16 +73,16 @@ while [[ $# -gt 0 ]]; do
             MODE_STAGE=true
             shift 1
             ;;
-        --build_temp)
-            MODE_BUILD_TEMP=true
+        --build)
+            MODE_BUILD=true
             shift 1
             ;;
-        --install_temp)
-            MODE_INSTALL_TEMP=true
+        --install)
+            MODE_INSTALL=true
             shift 1
             ;;
-        --all_temp)
-            MODE_ALL_TEMP=true
+        --all)
+            MODE_ALL=true
             shift 1
             ;;
         --help)
@@ -123,7 +123,7 @@ mode_stage() {
 }
 
 # when the build_pass1 mode is enabled, this will execute
-mode_build_temp() {
+mode_build() {
 	
 	# patch, configure and build
 	logprint "Starting build of ${APPNAME}..."
@@ -131,41 +131,29 @@ mode_build_temp() {
 	logprint "Entering stage dir."	
 	pushd "${T_SOURCE_DIR}"
 	assert_zero $?
-	
-	logprint "Building a local file for signature file generation"
-	mkdir -pv build
-	pushd build
-	assert_zero $?
-	
-	../configure --disable-bzlib --disable-libseccomp --disable-xzlib --disable-zlib
-	assert_zero $?
-	
-	make
-	assert_zero $?
-	
-	popd
-	
-	logprint "Configuring ${APPNAME}..."
-	./configure \
-		--prefix=/usr \
-		--host=${T_TRIPLET} \
-		--build=$(./config.guess)
+		
+	./configure --prefix=/usr
 	assert_zero $?
 	
 	logprint "Compiling..."
-	make FILE_COMPILE=$(pwd)/build/src/file
+	make
+	assert_zero $?
+		
+	
+	logprint "Checks..."
+	make check
 	assert_zero $?
 	
 	logprint "Build operation complete."
 }
 
-mode_install_temp() {
+mode_install() {
 	logprint "Starting install of ${APPNAME}..."
-	pushd "${T_SOURCE_DIR}/build"
+	pushd "${T_SOURCE_DIR}"
 	assert_zero $?
 	
 	logprint "Installing..."
-	make DESTDIR=${T_SYSROOT} install
+	make install
 	assert_zero $?
 	
 	logprint "Install operation complete."
@@ -177,18 +165,18 @@ mode_help() {
 	exit 1
 }
 
-if [ "$MODE_ALL_TEMP" = "true" ]; then
+if [ "$MODE_ALL" = "true" ]; then
 	MODE_STAGE=true
-	MODE_BUILD_TEMP=true
-	MODE_INSTALL_TEMP=true
+	MODE_BUILD=true
+	MODE_INSTALL=true
 fi
 
 # if no options were selected, then show help and exit
 if \
 	[ "$MODE_HELP" != "true" ] && \
 	[ "$MODE_STAGE" != "true" ] && \
-	[ "$MODE_BUILD_TEMP" != "true" ] && \
-	[ "$MODE_INSTALL_TEMP" != "true" ]
+	[ "$MODE_BUILD" != "true" ] && \
+	[ "$MODE_INSTALL" != "true" ]
 then
 	logprint "No option selected during execution."
 	mode_help
@@ -206,17 +194,16 @@ if [ "$MODE_STAGE" = "true" ]; then
 	assert_zero $?
 fi
 
-if [ "$MODE_BUILD_TEMP" = "true" ]; then
+if [ "$MODE_BUILD" = "true" ]; then
 	logprint "Build of ${APPNAME} selected."
-	mode_build_temp
+	mode_build
 	assert_zero $?
 fi
 
-if [ "$MODE_INSTALL_TEMP" = "true" ]; then
+if [ "$MODE_INSTALL" = "true" ]; then
 	logprint "Install of ${APPNAME} selected."
-	mode_install_temp
+	mode_install
 	assert_zero $?
 fi
 
 logprint "Execution of ${APPNAME} completed."
-

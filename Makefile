@@ -89,6 +89,9 @@ build_stage4:
 	set -e
 	sudo /usr/bin/env -i bash -c ". ./project_config.sh && ${dir_make}/build_stage4.sh"
 
+master:
+	set -e
+	sudo /usr/bin/env -i bash -c ". ./project_config.sh && ${dir_make}/master.sh"
 
 # example:
 # 	make dirs
