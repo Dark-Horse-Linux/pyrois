@@ -5,6 +5,7 @@ ulimit -l unlimited
 
 #ulimit -n 10240 
 ulimit -c unlimited
+ulimit -n 3000000
 
 
 # closely aligns with LFS Ch 5, 6

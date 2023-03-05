@@ -116,7 +116,7 @@ function restore() {
 		echo
 		pushd ${dir_artifacts}
 		assert_zero $?
-		tar xvpf ${project_root}/$selected
+		tar xpf ${project_root}/$selected
 		assert_zero $?
 		
 		logprint "Backup restored successfully.  Arming chroot."
@@ -124,7 +124,7 @@ function restore() {
 		assert_zero $?
 		make arm_chroot
 		echo
-		logprint "You may now proceed to run 'make build_stage4' or higher."
+		logprint "You may now proceed."
 		echo
 	else
 			logprint "User canceled.  Moving on."

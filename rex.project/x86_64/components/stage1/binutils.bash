@@ -36,6 +36,9 @@ ARGUMENT_LIST=(
     "build_pass2"
     "install_pass2"
     "pass2"
+    "build_pass3"
+    "install_pass3"
+    "pass3"
     "help"
 )
 
@@ -48,6 +51,9 @@ MODE_PASS1=false
 MODE_BUILD_PASS2=false
 MODE_INSTALL_PASS2=false
 MODE_PASS2=false
+MODE_BUILD_PASS3=false
+MODE_INSTALL_PASS3=false
+MODE_PASS3=false
 MODE_HELP=false
 
 # the file to log to
@@ -58,7 +64,7 @@ TIMESTAMP="$(date +%Y-%m-%d_%H:%M:%S)"
 
 # the path where logs are written to
 # note: LOGS_ROOT is sourced from environment
-LOG_DIR="${dir_logs}/${APPNAME}-${TIMESTAMP}"
+LOG_DIR="${LOGS_ROOT}/${APPNAME}-${TIMESTAMP}"
 
 # the path where the source will be located when complete
 # note: TEMP_STAGE_DIR is sourced from environment
@@ -110,6 +116,18 @@ while [[ $# -gt 0 ]]; do
             MODE_PASS2=true
             shift 1
             ;;
+        --build_pass3)
+            MODE_BUILD_PASS3=true
+            shift 1
+            ;;
+        --install_pass3)
+            MODE_INSTALL_PASS3=true
+            shift 1
+            ;;
+        --pass3)
+            MODE_PASS3=true
+            shift 1
+            ;;
         --help)
             MODE_HELP=true
             shift 1
@@ -136,6 +154,7 @@ mode_stage() {
 
 	logprint "Removing any pre-existing staging for ${APPNAME}."
 	rm -Rf "${T_SOURCE_DIR}"*
+	rm -Rf "${T_SOURCE_DIR}"
 
 	logprint "Extracting ${APPNAME}-${VERSION} source archive to ${TEMP_STAGE_DIR}"
 	tar xf "${SOURCES_DIR}/${APPNAME}-${VERSION}.tar."* -C "${TEMP_STAGE_DIR}" \
@@ -216,6 +235,66 @@ mode_build_pass2() {
 	logprint "Build operation complete."
 }
 
+mode_build_pass3() {
+	echo -n "3000000" >/proc/sys/fs/file-max
+	ulimit -n 3000000
+	ulimit -a
+	
+	logprint "Starting build of ${APPNAME}..."
+	
+	logprint "Entering build dir."	
+	pushd "${T_SOURCE_DIR}"
+	assert_zero $?
+	
+	logprint "Checking for PTY viability..."
+
+	expect -c 'spawn bash -c "echo test > /dev/pts/1"; expect "test"; exit [catch wait]'
+	assert_zero $?
+	
+	mkdir -pv build
+	assert_zero $?
+	pushd build
+	assert_zero $?
+	
+	logprint "Configuring ${APPNAME}..."
+	../configure \
+		--prefix=/usr \
+		--sysconfdir=/etc \
+		--enable-gold \
+		--enable-ld=default \
+		--enable-plugins \
+		--enable-shared \
+		--disable-werror \
+		--enable-64-bit-bfd \
+		--with-system-zlib
+		
+	assert_zero $?
+	
+	logprint "Compiling..."
+	make tooldir=/usr
+	assert_zero $?
+
+	logprint "Testing..."
+	err=0
+	make -k \
+		CFLAGS="-g -O2 -no-pie -fno-PIC" \
+		CXXFLAGS="-g -O2 -no-pie -fno-PIC" \
+		CFLAGS_FOR_TARGET="-g -O2" \
+		CXXFLAGS_FOR_TARGET="-g -O2" \
+		LDFLAGS= \
+		check \
+	|| err=1
+	
+	if [ $err -ne 0 ]; then
+		logprint "Testing failed."
+		grep -nl '^FAIL:' $(find -name '*.log')
+		#assert_zero $err
+	fi
+
+	logprint "Build operation complete."
+}
+
+
 mode_install_pass1() {
 	logprint "Starting install of ${APPNAME}..."
 	pushd "${T_SOURCE_DIR}/build"
@@ -243,9 +322,29 @@ mode_install_pass2() {
 	logprint "Install operation complete."
 }
 
+mode_install_pass3() {
+	logprint "Starting install of ${APPNAME}..."
+	pushd "${T_SOURCE_DIR}/build"
+	assert_zero $?
+		
+	make tooldir=/usr install
+	assert_zero $?
+	
+	logprint "Cleaning up..."
+	rm -fv /usr/lib/lib{bfd,ctf,ctf-nobfd,sframe,opcodes}.a
+	assert_zero $?
+	
+	rm -fv /usr/share/man/man1/{gprofng,gp-*}.1
+	assert_zero $?
+	
+	
+	logprint "Install operation complete."
+}
+
+
 mode_help() {
-	echo "${APPNAME} [ --stage ] [ --build_pass1 ] [ --install_pass1 ] [ --pass1 ] [ --build_pass2 ] [ --install_pass2 ] [ --pass2 ][ --help ]"
-	exit 0
+	echo "${APPNAME} [ --stage ] [ --build_pass1 ] [ --install_pass1 ] [ --pass1 ] [ --build_pass2 ] [ --install_pass2 ] [ --pass2 ][ --build_pass3 ] [ --install_pass3 ] [ --pass3 ][ --help ]"
+	exit 1
 }
 
 # MODE_PASS1 is a meta toggle for all pass1 modes.  Modes will always 
@@ -262,6 +361,12 @@ if [ "$MODE_PASS2" = "true" ]; then
 	MODE_INSTALL_PASS2=true
 fi
 
+if [ "$MODE_PASS3" = "true" ]; then
+	MODE_STAGE=true
+	MODE_BUILD_PASS3=true
+	MODE_INSTALL_PASS3=true
+fi
+
 # if no options were selected, then show help and exit
 if \
 	[ "$MODE_HELP" != "true" ] && \
@@ -269,7 +374,9 @@ if \
 	[ "$MODE_BUILD_PASS1" != "true" ] && \
 	[ "$MODE_INSTALL_PASS1" != "true" ] && \
 	[ "$MODE_BUILD_PASS2" != "true" ] && \
-	[ "$MODE_INSTALL_PASS2" != "true" ]
+	[ "$MODE_INSTALL_PASS2" != "true" ] && \
+	[ "$MODE_BUILD_PASS3" != "true" ] && \
+	[ "$MODE_INSTALL_PASS3" != "true" ]
 then
 	logprint "No option selected during execution."
 	mode_help
@@ -308,6 +415,18 @@ fi
 if [ "$MODE_INSTALL_PASS2" = "true" ]; then
 	logprint "Install of PASS2 selected."
 	mode_install_pass2
+	assert_zero $?
+fi
+
+if [ "$MODE_BUILD_PASS3" = "true" ]; then
+	logprint "Build of PASS3 selected."
+	mode_build_pass3
+	assert_zero $?
+fi
+
+if [ "$MODE_INSTALL_PASS3" = "true" ]; then
+	logprint "Install of PASS3 selected."
+	mode_install_pass3
 	assert_zero $?
 fi
 

@@ -5,6 +5,36 @@
 			"name":			"welcome master", 
 			"dependencies": [ null ],
 			"comment":		"greet the user"
+		},
+		{
+			"name":			"bc", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.13"
+		},
+		{
+			"name":			"flex", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.14"
+		},
+		{
+			"name":			"tcl", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.15"
+		},
+		{
+			"name":			"expect", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.16"
+		},
+		{
+			"name":			"dejagnu", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.17"
+		},
+		{
+			"name":			"binutils pass 3", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.18"
 		}
 	]
 }

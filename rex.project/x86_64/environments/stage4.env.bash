@@ -69,3 +69,4 @@ assert_zero() {
 }
 ARCHLIB_DIR=/lib64
 PATH=/usr/bin:/usr/sbin
+HOME=/

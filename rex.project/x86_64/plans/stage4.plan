@@ -32,7 +32,7 @@
 			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.7"
 		},
 		{
-			"name":			"xz", 
+			"name":			"xz final", 
 			"dependencies": [ null ],
 			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.8"
 		},

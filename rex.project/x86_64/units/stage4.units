@@ -109,7 +109,7 @@
         "environment":  			"environments/stage4.env.bash"
     },
     {
-        "name":         			"xz",
+        "name":         			"xz final",
         "target":       			"components/stage4/xz.bash --all",
 		"is_shell_command":			true,
 		"shell_definition":			"bash",
