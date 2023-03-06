@@ -23,6 +23,8 @@ logprint() {
 	echo "[$(date +%Y-%m-%d_%H:%M:%S)] [${APPNAME}] $1" \
 	| tee -a "${LOG_DIR}/${LOGFILE}"
 }
+
+# TODO chroot ignores this, and it breaks binutils pass 3
 ulimit -n 3000000
 /usr/sbin/chroot "${T_SYSROOT}" /usr/bin/env -i   \
     HOME=/root                  \

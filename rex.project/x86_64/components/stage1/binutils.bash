@@ -276,6 +276,8 @@ mode_build_pass3() {
 
 	logprint "Testing..."
 	err=0
+	# these flags are a workaround for botched tests caused by the pie
+	# options used in gcc compilation.
 	make -k \
 		CFLAGS="-g -O2 -no-pie -fno-PIC" \
 		CXXFLAGS="-g -O2 -no-pie -fno-PIC" \
@@ -288,6 +290,11 @@ mode_build_pass3() {
 	if [ $err -ne 0 ]; then
 		logprint "Testing failed."
 		grep -nl '^FAIL:' $(find -name '*.log')
+		# TODO Fix open file limit issues w/ Chroot bootstrap:
+		# there is an issue where using chroot to execute the kickoff is causing 
+		# open file limits to be reset.  until that is resolved, these tests
+		# will return a non-zero exit code.
+		# this will need resolved before a production release.
 		#assert_zero $err
 	fi
 

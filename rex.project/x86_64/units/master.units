@@ -19,8 +19,8 @@
         "environment":  			"environments/stage4.env.bash"
     },
     {
-        "name":         			"bc",
-        "target":       			"components/stage4/bc.bash --all",
+        "name":         			"gmp standalone",
+        "target":       			"components/stage4/gmp_standalone.bash --all",
 		"is_shell_command":			true,
 		"shell_definition":			"bash",
 		"force_pty":				true,
@@ -37,8 +37,8 @@
         "environment":  			"environments/stage4.env.bash"
     },
     {
-        "name":         			"flex",
-        "target":       			"components/stage4/flex.bash --all",
+        "name":         			"mpfr standalone",
+        "target":       			"components/stage4/mpfr_standalone.bash --all",
 		"is_shell_command":			true,
 		"shell_definition":			"bash",
 		"force_pty":				true,
@@ -55,8 +55,8 @@
         "environment":  			"environments/stage4.env.bash"
     },
     {
-        "name":         			"tcl",
-        "target":       			"components/stage4/tcl.bash --all",
+        "name":         			"mpc standalone",
+        "target":       			"components/stage4/mpc_standalone.bash --all",
 		"is_shell_command":			true,
 		"shell_definition":			"bash",
 		"force_pty":				true,
@@ -73,8 +73,8 @@
         "environment":  			"environments/stage4.env.bash"
     },
     {
-        "name":         			"expect",
-        "target":       			"components/stage4/expect.bash --all",
+        "name":         			"attr",
+        "target":       			"components/stage4/attr.bash --all",
 		"is_shell_command":			true,
 		"shell_definition":			"bash",
 		"force_pty":				true,
@@ -91,8 +91,8 @@
         "environment":  			"environments/stage4.env.bash"
     },
     {
-        "name":         			"dejagnu",
-        "target":       			"components/stage4/dejagnu.bash --all",
+        "name":         			"acl",
+        "target":       			"components/stage4/acl.bash --all",
 		"is_shell_command":			true,
 		"shell_definition":			"bash",
 		"force_pty":				true,
@@ -109,8 +109,8 @@
         "environment":  			"environments/stage4.env.bash"
     },
     {
-        "name":         			"binutils pass 3",
-        "target":       			"components/stage1/binutils.bash --pass3",
+        "name":         			"libcap",
+        "target":       			"components/stage4/libcap.bash --all",
 		"is_shell_command":			true,
 		"shell_definition":			"bash",
 		"force_pty":				true,

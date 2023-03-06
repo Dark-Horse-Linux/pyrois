@@ -7,34 +7,34 @@
 			"comment":		"greet the user"
 		},
 		{
-			"name":			"bc", 
+			"name":			"gmp standalone", 
 			"dependencies": [ null ],
-			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.13"
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.19"
 		},
 		{
-			"name":			"flex", 
+			"name":			"mpfr standalone", 
 			"dependencies": [ null ],
-			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.14"
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.20"
 		},
 		{
-			"name":			"tcl", 
+			"name":			"mpc standalone", 
 			"dependencies": [ null ],
-			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.15"
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.21"
 		},
 		{
-			"name":			"expect", 
+			"name":			"attr", 
 			"dependencies": [ null ],
-			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.16"
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.22"
 		},
 		{
-			"name":			"dejagnu", 
+			"name":			"acl", 
 			"dependencies": [ null ],
-			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.17"
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.23"
 		},
 		{
-			"name":			"binutils pass 3", 
+			"name":			"libcap", 
 			"dependencies": [ null ],
-			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.18"
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.24"
 		}
 	]
 }
