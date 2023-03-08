@@ -5,36 +5,6 @@
 			"name":			"welcome master", 
 			"dependencies": [ null ],
 			"comment":		"greet the user"
-		},
-		{
-			"name":			"gmp standalone", 
-			"dependencies": [ null ],
-			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.19"
-		},
-		{
-			"name":			"mpfr standalone", 
-			"dependencies": [ null ],
-			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.20"
-		},
-		{
-			"name":			"mpc standalone", 
-			"dependencies": [ null ],
-			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.21"
-		},
-		{
-			"name":			"attr", 
-			"dependencies": [ null ],
-			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.22"
-		},
-		{
-			"name":			"acl", 
-			"dependencies": [ null ],
-			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.23"
-		},
-		{
-			"name":			"libcap", 
-			"dependencies": [ null ],
-			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.24"
 		}
 	]
 }
