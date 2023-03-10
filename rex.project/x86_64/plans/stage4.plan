@@ -120,6 +120,11 @@
 			"name":			"shadow", 
 			"dependencies": [ null ],
 			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.25"
+		},
+		{
+			"name":			"gcc pass 3", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.26 -- endlessly fucking with compilers forever"
 		}
 	]
 }
