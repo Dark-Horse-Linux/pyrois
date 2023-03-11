@@ -1,4 +1,6 @@
 set -a
+set -u
+
 # We now do paths relative to / since we are INSIDE $T_SYSROOT
 
 TERM=xterm-256color

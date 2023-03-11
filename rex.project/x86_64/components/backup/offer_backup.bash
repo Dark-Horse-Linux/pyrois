@@ -1,5 +1,6 @@
 #!/bin/bash
 # move this to the makefile as a dedicated target
+set -u
 
 APPNAME="Offer Backup"
 
