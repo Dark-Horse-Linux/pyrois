@@ -125,6 +125,81 @@
 			"name":			"gcc pass 3", 
 			"dependencies": [ null ],
 			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.26 -- endlessly fucking with compilers forever"
+		},
+				{
+			"name":			"pkg-config", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.27"
+		},
+		{
+			"name":			"ncurses pass 2", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.28"
+		},
+		{
+			"name":			"ncurses legacy", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.28"
+		},
+		{
+			"name":			"sed pass 2", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.29"
+		},
+		{
+			"name":			"psmisc", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.30"
+		},
+		{
+			"name":			"gettext pass 2", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.31"
+		},
+		{
+			"name":			"bison pass 2", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.32"
+		},
+		{
+			"name":			"grep pass 2", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.33"
+		},
+		{
+			"name":			"bash pass 2", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.34"
+		},
+		{
+			"name":			"libtool", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.35"
+		},
+		{
+			"name":			"gdbm", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.36"
+		},
+		{
+			"name":			"gperf", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.37"
+		},
+		{
+			"name":			"expat", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.38"
+		},
+		{
+			"name":			"inetutils", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.39"
+		},
+		{
+			"name":			"less", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.40"
 		}
 	]
 }

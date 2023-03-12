@@ -5,36 +5,6 @@
 			"name":			"welcome master", 
 			"dependencies": [ null ],
 			"comment":		"greet the user"
-		},
-		{
-			"name":			"pkg-config", 
-			"dependencies": [ null ],
-			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.27"
-		},
-		{
-			"name":			"ncurses pass 2", 
-			"dependencies": [ null ],
-			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.28"
-		}
-		{
-			"name":			"ncurses legacy", 
-			"dependencies": [ null ],
-			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.28"
-		}
-		{
-			"name":			"sed pass 2", 
-			"dependencies": [ null ],
-			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.29"
-		},
-		{
-			"name":			"psmisc", 
-			"dependencies": [ null ],
-			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.30"
-		},
-		{
-			"name":			"gettext pass 2", 
-			"dependencies": [ null ],
-			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.31"
 		}
 	]
 }
