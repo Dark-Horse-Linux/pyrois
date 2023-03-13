@@ -200,6 +200,56 @@
 			"name":			"less", 
 			"dependencies": [ null ],
 			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.40"
+		},
+		{
+			"name":			"perl pass 2", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.41"
+		},
+		{
+			"name":			"xml parser", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.42"
+		},
+				{
+			"name":			"intltool", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.43"
+		},
+		{
+			"name":			"autoconf", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.44"
+		},
+		{
+			"name":			"automake", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.45"
+		},
+		{
+			"name":			"openssl", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.46"
+		},
+		{
+			"name":			"kmod", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.47"
+		},
+		{
+			"name":			"elfutils", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.48"
+		},
+		{
+			"name":			"libffi", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.49"
+		},
+		{
+			"name":			"python pass 2", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.50"
 		}
 	]
 }
