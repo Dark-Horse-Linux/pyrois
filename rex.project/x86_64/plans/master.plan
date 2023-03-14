@@ -5,56 +5,6 @@
 			"name":			"welcome master", 
 			"dependencies": [ null ],
 			"comment":		"greet the user"
-		},
-		{
-			"name":			"wheel", 
-			"dependencies": [ null ],
-			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.51"
-		},
-		{
-			"name":			"ninja", 
-			"dependencies": [ null ],
-			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.52"
-		},
-		{
-			"name":			"meson", 
-			"dependencies": [ null ],
-			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.53"
-		},
-		{
-			"name":			"coreutils pass 2", 
-			"dependencies": [ null ],
-			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.54"
-		},
-		{
-			"name":			"check", 
-			"dependencies": [ null ],
-			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.55"
-		},
-		{
-			"name":			"diffutils", 
-			"dependencies": [ null ],
-			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.56"
-		},
-		{
-			"name":			"gawk pass 2", 
-			"dependencies": [ null ],
-			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.57"
-		},
-		{
-			"name":			"findutils pass 2", 
-			"dependencies": [ null ],
-			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.58"
-		},
-		{
-			"name":			"groff", 
-			"dependencies": [ null ],
-			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.59"
-		},
-		{
-			"name":			"grub", 
-			"dependencies": [ null ],
-			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.60"
 		}
 	]
 }

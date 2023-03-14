@@ -17,7 +17,7 @@
 			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.4"
 		},
 		{
-			"name":			"glibc final", 
+			"name":			"glibc pass 2", 
 			"dependencies": [ null ],
 			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.5"
 		},
@@ -32,7 +32,7 @@
 			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.7"
 		},
 		{
-			"name":			"xz final", 
+			"name":			"xz pass 2", 
 			"dependencies": [ null ],
 			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.8"
 		},
@@ -42,17 +42,17 @@
 			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.9"
 		},
 		{
-			"name":			"file final", 
+			"name":			"file pass 2", 
 			"dependencies": [ null ],
 			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.10"
 		},
 		{
-			"name":			"readline final", 
+			"name":			"readline", 
 			"dependencies": [ null ],
 			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.11"
 		},
 		{
-			"name":			"m4 final", 
+			"name":			"m4 pass 2", 
 			"dependencies": [ null ],
 			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.12"
 		},
@@ -126,7 +126,7 @@
 			"dependencies": [ null ],
 			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.26 -- endlessly fucking with compilers forever"
 		},
-				{
+		{
 			"name":			"pkg-config", 
 			"dependencies": [ null ],
 			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.27"
@@ -211,7 +211,7 @@
 			"dependencies": [ null ],
 			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.42"
 		},
-				{
+		{
 			"name":			"intltool", 
 			"dependencies": [ null ],
 			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.43"
@@ -250,6 +250,116 @@
 			"name":			"python pass 2", 
 			"dependencies": [ null ],
 			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.50"
+		},
+				{
+			"name":			"wheel", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.51"
+		},
+		{
+			"name":			"ninja", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.52"
+		},
+		{
+			"name":			"meson", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.53"
+		},
+		{
+			"name":			"coreutils pass 2", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.54"
+		},
+		{
+			"name":			"check", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.55"
+		},
+		{
+			"name":			"diffutils pass 2", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.56"
+		},
+		{
+			"name":			"gawk pass 2", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.57"
+		},
+		{
+			"name":			"findutils pass 2", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.58"
+		},
+		{
+			"name":			"groff", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.59"
+		},
+		{
+			"name":			"grub", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.60"
+		},
+		{
+			"name":			"gzip pass 2", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.61"
+		},
+		{
+			"name":			"iproute2", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.62"
+		},
+		{
+			"name":			"kbd", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.63"
+		},
+		{
+			"name":			"libpipeline", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.64"
+		},
+		{
+			"name":			"make pass 2", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.65"
+		},
+		{
+			"name":			"patch pass 2", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.66"
+		},
+		{
+			"name":			"tar pass 2", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.67"
+		},
+		{
+			"name":			"texinfo pass 2", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.68"
+		},
+		{
+			"name":			"vim", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.69"
+		},
+				{
+			"name":			"markupsafe", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.70"
+		},
+		{
+			"name":			"jinja2", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.71"
+		},
+		{
+			"name":			"systemd", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.72"
 		}
 	]
 }

@@ -22,22 +22,22 @@
 			"comment":		"LFS 11.3-systemd-rc1 Ch. 7.12"
 		},
 		{
-			"name":			"gettext", 
+			"name":			"gettext pass 1", 
 			"dependencies": [ null ],
 			"comment":		"LFS 11.3-systemd-rc1 Ch. 7.7"
 		},
 		{
-			"name":			"bison", 
+			"name":			"bison pass 1", 
 			"dependencies": [ null ],
 			"comment":		"LFS 11.3-systemd-rc1 Ch. 7.8"
 		},
 		{
-			"name":			"perl", 
+			"name":			"perl pass 1", 
 			"dependencies": [ null ],
 			"comment":		"LFS 11.3-systemd-rc1 Ch. 7.9"
 		},
 		{
-			"name":			"python", 
+			"name":			"python pass 1", 
 			"dependencies": [ null ],
 			"comment":		"LFS 11.3-systemd-rc1 Ch. 7.10"
 		},

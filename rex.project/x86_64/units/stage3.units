@@ -55,7 +55,7 @@
         "environment":  			"environments/stage3.env.bash"
     },
     {
-        "name":         			"gettext",
+        "name":         			"gettext pass 1",
         "target":       			"components/stage3/gettext.bash --all_temp",
 		"is_shell_command":			true,
 		"shell_definition":			"bash",
@@ -73,7 +73,7 @@
         "environment":  			"environments/stage3.env.bash"
     },
     {
-        "name":         			"bison",
+        "name":         			"bison pass 1",
         "target":       			"components/stage3/bison.bash --all",
 		"is_shell_command":			true,
 		"shell_definition":			"bash",
@@ -91,7 +91,7 @@
         "environment":  			"environments/stage3.env.bash"
     },
     {
-        "name":         			"perl",
+        "name":         			"perl pass 1",
         "target":       			"components/stage3/perl.bash --all",
 		"is_shell_command":			true,
 		"shell_definition":			"bash",
@@ -109,7 +109,7 @@
         "environment":  			"environments/stage3.env.bash"
     },
     {
-        "name":         			"python",
+        "name":         			"python pass 1",
         "target":       			"components/stage3/python.bash --all",
 		"is_shell_command":			true,
 		"shell_definition":			"bash",
