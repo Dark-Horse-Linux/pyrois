@@ -360,6 +360,31 @@
 			"name":			"systemd", 
 			"dependencies": [ null ],
 			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.72"
+		},
+		{
+			"name":			"dbus", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.73"
+		},
+		{
+			"name":			"man-db", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.74"
+		},
+		{
+			"name":			"procps-ng", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.75"
+		},
+		{
+			"name":			"util-linux", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.76"
+		},
+		{
+			"name":			"e2fsprogs", 
+			"dependencies": [ null ],
+			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.77"
 		}
 	]
 }
