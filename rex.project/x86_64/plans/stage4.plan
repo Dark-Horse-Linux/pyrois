@@ -377,7 +377,7 @@
 			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.75"
 		},
 		{
-			"name":			"util-linux", 
+			"name":			"util-linux pass 2", 
 			"dependencies": [ null ],
 			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.76"
 		},
@@ -385,6 +385,11 @@
 			"name":			"e2fsprogs", 
 			"dependencies": [ null ],
 			"comment":		"LFS 11.3-systemd-rc1 Ch. 8.77"
+		},
+		{
+			"name":			"stage4 cleanup", 
+			"dependencies": [ null ],
+			"comment":		"8.80"
 		}
 	]
 }

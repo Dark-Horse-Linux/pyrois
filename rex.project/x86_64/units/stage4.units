@@ -1351,7 +1351,7 @@
 		"environment":  			"environments/stage4.env.bash"
 	},
 	{
-		"name":         			"util-linux",
+		"name":         			"util-linux pass 2",
 		"target":       			"components/stage4/util-linux.bash --all",
 		"is_shell_command":			true,
 		"shell_definition":			"bash",
@@ -1371,6 +1371,24 @@
 	{
 		"name":         			"e2fsprogs",
 		"target":       			"components/stage4/e2fsprogs.bash --all",
+		"is_shell_command":			true,
+		"shell_definition":			"bash",
+		"force_pty":				true,
+		"set_working_directory":	false,
+		"working_directory":		"",
+		"rectify":      			false,
+		"rectifier":    			"",
+		"active":       			true,
+		"required":     			true,
+		"set_user_context": 		true,
+		"user":         			"root",
+		"group":        			"root",
+		"supply_environment":		true,
+		"environment":  			"environments/stage4.env.bash"
+	},
+	{
+		"name":         			"stage4 cleanup",
+		"target":       			"components/stage4/cleanup.bash",
 		"is_shell_command":			true,
 		"shell_definition":			"bash",
 		"force_pty":				true,
