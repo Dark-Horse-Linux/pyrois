@@ -390,6 +390,11 @@
 			"name":			"stage4 cleanup", 
 			"dependencies": [ null ],
 			"comment":		"8.80"
+		},
+		{
+			"name":			"systemd tuning", 
+			"dependencies": [ null ],
+			"comment":		"9.2"
 		}
 	]
 }

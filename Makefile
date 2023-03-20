@@ -89,6 +89,10 @@ build_stage4:
 	set -e
 	sudo /usr/bin/env -i bash -c ". ./project_config.sh && ${dir_make}/build_stage4.sh"
 
+build_stage5:
+	set -e
+	sudo /usr/bin/env -i bash -c ". ./project_config.sh && ${dir_make}/build_stage5.sh"
+
 master:
 	set -e
 	sudo /usr/bin/env -i bash -c ". ./project_config.sh && ${dir_make}/master.sh"
@@ -118,7 +122,8 @@ all:
 	make build_stage2 && \
 	make build_stage3 && \
 	make backup && \
-	make build_stage4
+	make build_stage4 && \
+	make build_stage5
 
 
 # Remember, before you make clean or make purge_artifacts you MUST run

@@ -1,0 +1,20 @@
+{
+	"plan":
+	[
+		{
+			"name":			"welcome 5", 
+			"dependencies": [ null ],
+			"comment":		"greet the user"
+		},
+		{
+			"name":			"cpio", 
+			"dependencies": [ null ],
+			"comment":		"prereq for fedora kernel config"
+		},
+		{
+			"name":			"linux kernel", 
+			"dependencies": [ null ],
+			"comment":		"the abyss"
+		}
+	]
+}
