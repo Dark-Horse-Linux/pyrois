@@ -5,7 +5,7 @@
 # make variables persist in subprocesses for logging function
 set -a
 
-APPNAME="systemd-tuning"
+APPNAME="system-tuning"
 
 
 # the file to log to
@@ -89,6 +89,17 @@ assert_zero $?
 logprint "Fixing systemd scope creep on logind.conf"
 cp -vf ${CONFIGS_DIR}/etc_systemd_logind.conf /etc/systemd/logind.conf
 assert_zero $?
+
+logprint "Setting Release Files"
+cp -vf ${CONFIGS_DIR}/etc_dhl-release /etc/dhl-release
+assert_zero $?
+
+cp -vf ${CONFIGS_DIR}/etc_lsb-release /etc/lsb-release
+assert_zero $?
+
+cp -vf ${CONFIGS_DIR}/etc_os-release /etc/os-release
+assert_zero $?
+
 
 # re: fstab, since this artifact will boot on an iso, the booting disk
 # may need to be assumed

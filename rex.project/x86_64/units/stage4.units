@@ -1405,8 +1405,8 @@
 		"environment":  			"environments/stage4.env.bash"
 	},
 	{
-		"name":         			"systemd tuning",
-		"target":       			"components/stage5/systemd-tuning.bash",
+		"name":         			"system tuning",
+		"target":       			"components/stage5/system-tuning.bash",
 		"is_shell_command":			true,
 		"shell_definition":			"bash",
 		"force_pty":				true,

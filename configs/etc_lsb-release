@@ -1,0 +1,4 @@
+DISTRIB_ID="Dark Horse Linux"
+DISTRIB_RELEASE="20230321_pre-release"
+DISTRIB_CODENAME="Christopher M. Punches"
+DISTRIB_DESCRIPTION="Pre-Release ALFS-NG"
