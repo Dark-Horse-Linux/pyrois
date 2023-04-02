@@ -138,7 +138,7 @@ mode_build() {
 		--sysconfdir=/etc \
 		--disable-static \
 		--with-history \
-		--docdir=/usr/share/doc/${APPNAME}-${VERSION}
+		--docdir=/usr/share/doc/${APPNAME}-${VERSION} \
 		PYTHON=/usr/bin/python3
 	assert_zero $?
 	

@@ -99,6 +99,7 @@ master:
 
 livecd:
 	set -e
+	make disarm_chroot
 	sudo /usr/bin/env -i bash -c ". ./project_config.sh && ${dir_make}/livecd.sh"
 
 # example:

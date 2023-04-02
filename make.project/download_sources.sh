@@ -19,7 +19,6 @@ wget \
 	https://storage.darkhorselinux.org/sources/upstream_sources/ \
 	|| echofail "Downloading sources..."
 
-
 echo "Validating source downloads..."
 pushd ${dir_sources} 1>/dev/null 2>/dev/null
 

@@ -41,6 +41,13 @@ assert_zero $?
 pushd ${dir_artifacts}
 assert_zero $?
 
+logprint "Emptying source stage..."
+rm -Rf ${TEMP_STAGE_DIR}
+assert_zero $?
+
+rm -Rf /rex_embedded
+assert_zero $?
+
 logprint "Generating initramfs..."
 # TODO chroot ignores this, and it breaks binutils pass 3
 ulimit -n 3000000
