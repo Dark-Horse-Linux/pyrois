@@ -127,7 +127,7 @@ all:
 	make build_stage3 && \
 	make build_stage4 && \
 	make build_stage5 && \
-	make backup && \
+	make backup &&
 
 
 # Remember, before you make clean or make purge_artifacts you MUST run
