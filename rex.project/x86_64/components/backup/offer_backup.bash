@@ -72,14 +72,13 @@ function perform_backup() {
 
 
 read -r -d '' msg <<-'EOF'
-This is a great stopping point for backing up the stage if you're 
-debugging.  The following prompt will ask if you'd like to back up the 
-existing sysroot, in case you need to start from stage 4 again for 
-whatever reason, such as a build failure.
+The following prompt will ask if you'd like to back up the 
+existing sysroot.  This is useful for debugging, so that you don't have
+to wait for the entire cross-compilation for every change.
 
 If you select yes, you will see a gzipped tarball containing the 
 sysroot generated in your project root.  If you select no, your backup 
-will not be created, and you'll move on to stage 4.  
+will not be created.  
 
 If you skip the backup and something fails from here, you'll need to
 run "make clean" and start from the beginning.
