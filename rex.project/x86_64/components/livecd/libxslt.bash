@@ -9,10 +9,10 @@ set -a
 # Configuration:
 # ----------------------------------------------------------------------
 # the name of this application
-APPNAME="linux"
+APPNAME="libxslt"
 
 # the version of this application
-VERSION="6.0.12"
+VERSION="1.1.34"
 
 # ----------------------------------------------------------------------
 # Variables and functions sourced from Environment:
@@ -47,7 +47,7 @@ MODE_HELP=false
 LOGFILE="${APPNAME}.log"
 
 # ISO 8601 variation
-TIMESTAMP="$(date +%Y-%m-%d_%H%M%S)"
+TIMESTAMP="$(date +%Y-%m-%d_%H:%M:%S)"
 
 # the path where logs are written to
 # note: LOGS_ROOT is sourced from environment
@@ -131,19 +131,18 @@ mode_build() {
 	logprint "Entering build dir."	
 	pushd "${T_SOURCE_DIR}"
 	assert_zero $?
-
-	logprint "running make mrproper..."
-	make mrproper
-	assert_zero $?
-		
-	logprint "Configuring kernel..."
-	cp -vf ${CONFIGS_DIR}/kernel_config ./.config
+			
+	logprint "Configuring..."
+	./configure \
+		--prefix=/usr \
+		--disable-static \
+		--docdir=/usr/share/doc/${APPNAME}-${VERSION} \
+		PYTHON=/usr/bin/python3
 	assert_zero $?
 	
-	logprint "Compiling kernel"
+	logprint "Compiling docs..."
 	make
 	assert_zero $?
-	logprint "Checks exited with '$?'. "
 
 	logprint "Build operation complete."
 }
@@ -153,35 +152,10 @@ mode_install() {
 	pushd "${T_SOURCE_DIR}"
 	assert_zero $?
 	
-	logprint "Installing modules..."
-	make modules_install
+	logprint "Installing..."
+	make install
 	assert_zero $?
-	
-	logprint "Installing kernel"
-	# TODO parameterize this for cross-arch builds
-	cp -iv arch/x86_64/boot/bzImage /boot/vmlinuz-${VERSION}-dark_horse-pyrois
-	assert_zero $?
-	
-	cp -ifv System.map /boot/System.map-${VERSION}
-	assert_zero $?
-	
-	cp -ivf .config /boot/config-${VERSION}
-	assert_zero $?
-	
-	logprint "Installing documentation..."
-	install -d /usr/share/doc/linux-${VERSION}
-	assert_zero $?
-	
-	cp -r Documentation/* /usr/share/doc/linux-${VERSION}
-	assert_zero $?
-	
-	logprint "Configuring USB module load order..."
-	mkdir -p /etc/modprobe.d
-	assert_zero $?
-	
-	cp -vf ${CONFIGS_DIR}/etc_modprobe.d_usb.conf /etc/modprobe.d/usb.conf
-	assert_zero $?
-	
+		
 	logprint "Install operation complete."
 }
 

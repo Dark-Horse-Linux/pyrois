@@ -97,6 +97,10 @@ master:
 	set -e
 	sudo /usr/bin/env -i bash -c ". ./project_config.sh && ${dir_make}/master.sh"
 
+livecd:
+	set -e
+	sudo /usr/bin/env -i bash -c ". ./project_config.sh && ${dir_make}/livecd.sh"
+
 # example:
 # 	make dirs
 # 	make install_rex

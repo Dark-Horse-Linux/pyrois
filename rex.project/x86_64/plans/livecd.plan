@@ -1,0 +1,15 @@
+{
+	"plan":
+	[
+		{
+			"name":			"welcome livecd", 
+			"dependencies": [ null ],
+			"comment":		"greet the user"
+		},
+		{
+			"name":			"create_livecd", 
+			"dependencies": [ null ],
+			"comment":		"executed outside of chroot context"
+		}
+	]
+}

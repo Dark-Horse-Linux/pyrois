@@ -15,6 +15,26 @@
 			"name":			"linux kernel", 
 			"dependencies": [ null ],
 			"comment":		"the abyss"
+		},
+		{
+			"name":			"libxml2", 
+			"dependencies": [ null ],
+			"comment":		"on your own again"
+		},
+		{
+			"name":			"libxslt", 
+			"dependencies": [ null ],
+			"comment":		"on your own again"
+		},
+		{
+			"name":			"asciidoc", 
+			"dependencies": [ null ],
+			"comment":		"on your own again"
+		},
+		{
+			"name":			"dracut", 
+			"dependencies": [ null ],
+			"comment":		"on your own again"
 		}
 	]
 }

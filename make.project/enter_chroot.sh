@@ -28,7 +28,7 @@ logprint() {
 ulimit -n 3000000
 /usr/sbin/chroot "${T_SYSROOT}" /usr/bin/env -i   \
     HOME=/root                  \
-    TERM="$TERM"                \
+    TERM="xterm-256color"                \
     PS1='\n(dark horse linux) [ \u @ \H ] << \w >>\n\n[- ' \
     PATH=/usr/bin:/usr/sbin     \
     /bin/bash --login
