@@ -66,8 +66,6 @@ function perform_backup() {
 	logprint "Re-arming chroot..."
 	make arm_chroot
 	echo
-	logprint "You may now proceed to run 'make build_stage4'."
-	echo
 }
 
 

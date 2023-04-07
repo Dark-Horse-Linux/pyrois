@@ -45,7 +45,7 @@ logprint "Emptying source stage..."
 rm -Rf ${TEMP_STAGE_DIR}
 assert_zero $?
 
-rm -Rf /rex_embedded
+rm -Rf ${T_SYSROOT}/rex_embedded
 assert_zero $?
 
 logprint "Generating initramfs..."
@@ -56,11 +56,11 @@ ulimit -n 3000000
     TERM="xterm-256color"                \
     PS1='\n(dark horse linux) [ \u @ \H ] << \w >>\n\n[- ' \
     PATH=/usr/bin:/usr/sbin     \
-    dracut --force '' 6.0.12
+    dracut -c /usr/etc/dracut.conf --force '' 6.0.12
 assert_zero $?
 
 logprint "Generating bootable ISO"
-grub2-mkrescue -o DHLP.iso ${T_SYSROOT}
+grub2-mkrescue -o DHLP.iso  -V "DHLP" ${T_SYSROOT}
 assert_zero $?
 
 logprint "Thanks for using Dark Horse Linux.  Your experimental build is at '${dir_artifacts}/DHLP.iso'."
