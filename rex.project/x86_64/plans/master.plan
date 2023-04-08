@@ -5,6 +5,16 @@
 			"name":			"welcome master", 
 			"dependencies": [ null ],
 			"comment":		"greet the user"
+		},
+		{
+			"name":			"which", 
+			"dependencies": [ null ],
+			"comment":		"greet the user"
+		},
+		{
+			"name":			"squashfs-tools", 
+			"dependencies": [ null ],
+			"comment":		"greet the user"
 		}
 	]
 }

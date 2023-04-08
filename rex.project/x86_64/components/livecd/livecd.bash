@@ -7,7 +7,6 @@ set -a
 
 APPNAME="livecd"
 
-
 # the file to log to
 LOGFILE="${APPNAME}.log"
 
@@ -33,9 +32,12 @@ logprint "Creating grub boot directory..."
 mkdir -p ${T_SYSROOT}/boot/grub
 assert_zero $? 
 
-
 logprint "Installing livecd grub config" 
 cp -vf ${CONFIGS_DIR}/boot_grub_grub.cfg ${T_SYSROOT}/boot/grub/grub.cfg
+assert_zero $?
+
+logprint "Staging OverlayFS Init Script"
+cp ${CONFIGS_DIR}/init-overlay ${T_SYSROOT}/boot/init-overlay
 assert_zero $?
 
 pushd ${dir_artifacts}
@@ -45,7 +47,7 @@ logprint "Emptying source stage..."
 rm -Rf ${TEMP_STAGE_DIR}
 assert_zero $?
 
-rm -Rf ${T_SYSROOT}/rex_embedded
+rm -Rf ${T_SYSROOT}/${rex_dir}
 assert_zero $?
 
 logprint "Generating initramfs..."
@@ -60,7 +62,7 @@ ulimit -n 3000000
 assert_zero $?
 
 logprint "Generating bootable ISO"
-grub2-mkrescue -o DHLP.iso  -V "DHLP" ${T_SYSROOT}
+grub2-mkrescue -A livecd -o DHLP.iso  -V "livecd" ${T_SYSROOT}
 assert_zero $?
 
 logprint "Thanks for using Dark Horse Linux.  Your experimental build is at '${dir_artifacts}/DHLP.iso'."

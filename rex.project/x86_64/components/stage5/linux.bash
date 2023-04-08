@@ -139,9 +139,7 @@ mode_build() {
 	logprint "Configuring kernel..."
 	cp -vf ${CONFIGS_DIR}/kernel_config ./.config
 	assert_zero $?
-	
-	make menuconfig
-	
+		
 	logprint "Compiling kernel"
 	make
 	assert_zero $?

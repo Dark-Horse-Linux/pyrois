@@ -17,6 +17,42 @@
 			"group":        			"root",
 			"supply_environment":		true,
 			"environment":  			"environments/stage4.env.bash"
+		},
+		{
+			"name":         			"which",
+			"target":       			"components/stage5/which.bash --all",
+			"is_shell_command":			true,
+			"shell_definition":			"bash",
+			"force_pty":				true,
+			"set_working_directory":	false,
+			"working_directory":		"",
+			"rectify":      			false,
+			"rectifier":    			"",
+			"active":       			true,
+			"required":     			true,
+			"set_user_context": 		true,
+			"user":         			"root",
+			"group":        			"root",
+			"supply_environment":		true,
+			"environment":  			"environments/stage4.env.bash"
+		},
+		{
+			"name":         			"squashfs-tools",
+			"target":       			"components/stage5/squashfs-tools.bash --all",
+			"is_shell_command":			true,
+			"shell_definition":			"bash",
+			"force_pty":				true,
+			"set_working_directory":	false,
+			"working_directory":		"",
+			"rectify":      			false,
+			"rectifier":    			"",
+			"active":       			true,
+			"required":     			true,
+			"set_user_context": 		true,
+			"user":         			"root",
+			"group":        			"root",
+			"supply_environment":		true,
+			"environment":  			"environments/stage4.env.bash"
 		}
 	]
 }

@@ -34,7 +34,7 @@
 			"user":         			"root",
 			"group":        			"root",
 			"supply_environment":		true,
-			"environment":  			"environments/stage2.env.bash"
+			"environment":  			"environments/livecd.env.bash"
 		}
 	]
 }
