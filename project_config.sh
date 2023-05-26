@@ -69,3 +69,4 @@ if [ -n "$1" ]; then
 fi
 
 # EOF
+COLORTERM="truecolor"

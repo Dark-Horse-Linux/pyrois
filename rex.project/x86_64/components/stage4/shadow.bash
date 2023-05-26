@@ -198,7 +198,6 @@ mode_install() {
 	useradd -D --gid 999
 	assert_zero $?
 	
-	
 	logprint "Install operation complete."
 }
 

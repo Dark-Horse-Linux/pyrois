@@ -489,7 +489,7 @@ if \
 	[ "$MODE_BUILD_GCC_PASS1" != "true" ] && \
 	[ "$MODE_INSTALL_GCC_PASS1" != "true" ] && \
 	[ "$MODE_BUILD_GCC_PASS2" != "true" ] && \
-	[ "$MODE_INSTALL_PASS2" != "true" ] && \
+	[ "$MODE_INSTALL_GCC_PASS2" != "true" ] && \
 	[ "$MODE_BUILD_LIBSTDCXX_PASS1" != "true" ] && \
 	[ "$MODE_INSTALL_LIBSTDCXX_PASS1" != "true" ] && \
 	[ "$MODE_BUILD_LIBSTDCXX_PASS2" != "true" ] && \
