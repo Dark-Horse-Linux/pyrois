@@ -1,3 +1,6 @@
+#!/usr/bin/env bash
+
+set -u
 
 function echofail() {
 	echo "Failed: $1"

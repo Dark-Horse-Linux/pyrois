@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -u
 
 mkdir -pv ${dir_sysroot}/{etc,var} ${dir_sysroot}/usr/{bin,lib,sbin} || echofail "Creating sysroot directories..."
 

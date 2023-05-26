@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+set -u
 # closely aligns with LFS Ch 5, 6
 
 # fix an issue with open files limit on some hosts

@@ -1,4 +1,6 @@
 #!/bin/bash
+set -u
+
 APPNAME="CHROOT VFS SETUP"
 T_SYSROOT=${dir_sysroot}
 set -a

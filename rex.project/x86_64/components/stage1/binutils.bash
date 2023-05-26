@@ -4,6 +4,7 @@
 
 # make variables persist in subprocesses for logging function
 set -a
+set -u
 
 # ----------------------------------------------------------------------
 # Configuration:
@@ -324,6 +325,9 @@ mode_install_pass2() {
 	# doublecheck this
 	logprint "Clean up items..."
 	rm -v ${T_SYSROOT}/usr/lib/lib{bfd,ctf,ctf-nobfd,opcodes}.{a,la}
+	assert_zero $?
+	
+	rm -v rm -fv /usr/share/man/man1/{gprofng,gp-*}.1
 	assert_zero $?
 	
 	logprint "Install operation complete."

@@ -4,15 +4,15 @@
 
 # make variables persist in subprocesses for logging function
 set -a
-set -u
+
 # ----------------------------------------------------------------------
 # Configuration:
 # ----------------------------------------------------------------------
 # the name of this application
-APPNAME="dracut"
+APPNAME="squashfs"
 
 # the version of this application
-VERSION="059"
+VERSION="4.6.1"
 
 # ----------------------------------------------------------------------
 # Variables and functions sourced from Environment:
@@ -53,6 +53,7 @@ TIMESTAMP="$(date +%Y-%m-%d_%H:%M:%S)"
 # note: LOGS_ROOT is sourced from environment
 LOG_DIR="${LOGS_ROOT}/${APPNAME}-${TIMESTAMP}"
 
+mkdir -p ${TEMP_STAGE_DIR}
 # the path where the source will be located when complete
 # note: TEMP_STAGE_DIR is sourced from environment
 T_SOURCE_DIR="${TEMP_STAGE_DIR}/${APPNAME}"
@@ -113,11 +114,12 @@ mode_stage() {
 	rm -Rf "${T_SOURCE_DIR}"*
 
 	logprint "Extracting ${APPNAME}-${VERSION} source archive to ${TEMP_STAGE_DIR}"
-	tar xf "${SOURCES_DIR}/${APPNAME}-${VERSION}."* -C "${TEMP_STAGE_DIR}"
+	echo "${SOURCES_DIR}/${APPNAME}${VERSION}.tar."* -C "${TEMP_STAGE_DIR}"
+	tar xf "${SOURCES_DIR}/${APPNAME}${VERSION}.tar."* -C "${TEMP_STAGE_DIR}"
 	assert_zero $?
 
 	# conditionally rename if it needs it
-	stat "${T_SOURCE_DIR}-"* && mv "${T_SOURCE_DIR}-"* "${T_SOURCE_DIR}"
+	stat "${T_SOURCE_DIR}"* && mv "${T_SOURCE_DIR}"* "${T_SOURCE_DIR}"
 
 	logprint "Staging operation complete."
 }
@@ -131,9 +133,8 @@ mode_build() {
 	logprint "Entering build dir."	
 	pushd "${T_SOURCE_DIR}"
 	assert_zero $?
-		
-	logprint "Configuring ${APPNAME}..."	
-	./configure --disable-documentation
+
+	pushd squashfs-tools
 	assert_zero $?
 	
 	logprint "Compiling..."
@@ -148,10 +149,23 @@ mode_install() {
 	pushd "${T_SOURCE_DIR}"
 	assert_zero $?
 	
+	pushd squashfs-tools
+	assert_zero $?
+	
+	# fixing nonsense
+	#sed -i 's/ECHO=$(which echo)/ECHO="echo"/' ../generate-manpages/functions.sh
+	#assert_zero $?
+	
+	#sed -i '4,8s/^/#/' ../generate-manpages/functions.sh
+	#assert_zero $?
+	
+	sed -i 's|INSTALL_DIR = $(INSTALL_PREFIX)/bin|INSTALL_DIR = /usr/sbin|' Makefile
+	assert_zero $?
+	
 	logprint "Installing..."
 	make install
 	assert_zero $?
-		
+			
 	logprint "Install operation complete."
 }
 

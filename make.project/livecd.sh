@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+set -u
 
 # fix an issue with open files limit on some hosts
 ulimit -l unlimited

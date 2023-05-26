@@ -1,3 +1,7 @@
+#!/usr/bin/env bash
+
+set -u
+
 echo
 echo "Recreating ${dir_artifacts}"
 rm -Rf ${dir_artifacts}

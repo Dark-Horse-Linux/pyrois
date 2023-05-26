@@ -4,7 +4,7 @@
 
 # make variables persist in subprocesses for logging function
 set -a
-
+set -u
 # ----------------------------------------------------------------------
 # Configuration:
 # ----------------------------------------------------------------------

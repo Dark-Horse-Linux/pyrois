@@ -4,15 +4,15 @@
 
 # make variables persist in subprocesses for logging function
 set -a
-set -u
+
 # ----------------------------------------------------------------------
 # Configuration:
 # ----------------------------------------------------------------------
 # the name of this application
-APPNAME="dracut"
+APPNAME="which"
 
 # the version of this application
-VERSION="059"
+VERSION="2.21"
 
 # ----------------------------------------------------------------------
 # Variables and functions sourced from Environment:
@@ -113,7 +113,7 @@ mode_stage() {
 	rm -Rf "${T_SOURCE_DIR}"*
 
 	logprint "Extracting ${APPNAME}-${VERSION} source archive to ${TEMP_STAGE_DIR}"
-	tar xf "${SOURCES_DIR}/${APPNAME}-${VERSION}."* -C "${TEMP_STAGE_DIR}"
+	tar xf "${SOURCES_DIR}/${APPNAME}-${VERSION}.tar."* -C "${TEMP_STAGE_DIR}"
 	assert_zero $?
 
 	# conditionally rename if it needs it
@@ -131,9 +131,9 @@ mode_build() {
 	logprint "Entering build dir."	
 	pushd "${T_SOURCE_DIR}"
 	assert_zero $?
-		
-	logprint "Configuring ${APPNAME}..."	
-	./configure --disable-documentation
+
+	logprint "Configuring ${APPNAME}..."
+	./configure --prefix=/usr
 	assert_zero $?
 	
 	logprint "Compiling..."
@@ -151,7 +151,7 @@ mode_install() {
 	logprint "Installing..."
 	make install
 	assert_zero $?
-		
+	
 	logprint "Install operation complete."
 }
 

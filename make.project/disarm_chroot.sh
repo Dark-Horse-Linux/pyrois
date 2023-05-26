@@ -1,4 +1,6 @@
 #!/bin/bash
+set -u
+
 APPNAME="CHROOT VKFS SETUP"
 
 # ISO 8601 variation

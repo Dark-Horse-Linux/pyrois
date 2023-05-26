@@ -1,0 +1,24 @@
+#!/bin/sh
+
+mkdir /run/overlay
+
+# Set up the overlay filesystem
+mount -t tmpfs tmpfs /run/overlay
+mkdir -p /run/overlay/upper
+mkdir -p /run/overlay/work
+mkdir -p /run/overlay/root
+
+mount -t overlay overlay -o lowerdir=/,upperdir=/run/overlay/upper,workdir=/run/overlay/work /run/overlay/root
+
+# Pivot the root filesystem to the overlay filesystem
+pivot_root /run/overlay/root /run/overlay/root/mnt
+
+# Move the original mount points to their new locations
+for i in dev proc sys run; do
+    mount --move /mnt/$i /$i
+done
+
+# Clean up and switch to the new init
+umount /mnt
+exec chroot . /sbin/init <dev/console >dev/console 2>&1
+

@@ -1,3 +1,7 @@
+#!/usr/bin/env bash
+
+set -u
+
 function echofail() {
 	echo $1
 	exit 1

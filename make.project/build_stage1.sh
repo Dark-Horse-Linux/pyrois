@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -u
 
 # closely aligns with LFS Ch 5, 6
 

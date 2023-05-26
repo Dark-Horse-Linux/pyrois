@@ -3,6 +3,7 @@
 # print to stdout, print to log
 # the path where logs are written to
 # note: LOGS_ROOT is sourced from environment
+set -u
 
 APPNAME="CHROOT VFS SETUP"
 
