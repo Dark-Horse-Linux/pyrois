@@ -37,7 +37,7 @@ dir_artifacts=${dir_stage}/artifacts
 
 # path for the logs
 dir_logs=${project_root}/logs
-
+LOGS_ROOT="$dir_logs"
 # config directory - general path for configuration files on the target
 # system before they're placed, as well as various values for configure
 # of the build
