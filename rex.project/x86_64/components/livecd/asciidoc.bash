@@ -137,7 +137,10 @@ mode_build() {
 	autoreconf -i
 	assert_zero $?
 	
-	./configure
+	./configure \
+		--prefix=/usr \
+		--sysconfdir=/etc \
+		--docdir=/usr/share/doc/${APPNAME}-${VERSION}
 	assert_zero $?
 	
 	logprint "Compiling docs..."

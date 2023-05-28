@@ -154,7 +154,7 @@ mode_install() {
 	assert_zero $?
 	
 	logprint "Installing modules..."
-	make modules_install
+	make INSTALL_MOD_STRIP=1 modules_install
 	assert_zero $?
 	
 	logprint "Installing kernel"
